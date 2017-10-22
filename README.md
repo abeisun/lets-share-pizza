@@ -24,7 +24,7 @@ Our prototype will use geolocation data and will collect information about the p
 
 ##Any algorithms or special techniques that will be necessary
 
-We will use the location of the request and the location of the user to calculate the distance between the person using the app and the person requesting a pizza
+We will use the location of the request and the location of the user to calculate the distance between the person using the app and the person requesting a pizza.
 
 ##Electronic mockups of what your team will be developing using wireframes. No hand-drawn mockups accepted. Tools to create wireframes include Balsamiq (commercial; de facto standard), Gliffy, MockFlow, and even Microsoft PowerPoint.
 
