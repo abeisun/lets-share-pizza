@@ -28,5 +28,7 @@ We will use the location of the request and the location of the user to calculat
 
 ##Electronic mockups of what your team will be developing using wireframes. No hand-drawn mockups accepted. Tools to create wireframes include Balsamiq (commercial; de facto standard), Gliffy, MockFlow, and even Microsoft PowerPoint.
 
-
-
+## Comments by Ming
+* Fun idea
+* Sorry, Geolocation, front-end framework are not features.  What will geolocation be used for? Ditto with email.  A feature is *what* the user(s) will *do*
+* Missing: list of pizza shops in an area
