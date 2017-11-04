@@ -14,9 +14,10 @@ Our website will bring these hungry people together by providing contact informa
 
 ##List of all the features that your team will implement (including which of the "Pick 3" items were chosen by the team). Your team will be held accountable for the features you list!
 
-Geolocation
-Front-end framework
-Server-side data persistence
+List all active pizza orders on a map using the Google Maps API (Geolocation).
+Display the forms for submitting a new pizza request or adding on to a pizza request, possibly using bootstrap (Front-end).
+MongoDB to store all active orders and their state. (Server-side data persistence).
+Drop down list of all pizza shops (that do takeout) within a radius by using Google Locations API. This drop down list will be used to schoose from when submitting a new pizza request.
 
 ##What data will your prototype be using and collecting
 
