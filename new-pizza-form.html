@@ -2,20 +2,19 @@
 
 <html>
 <head>
-<title>Historic Landmarks</title>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="gmap_style.css" />
+<title>New Pizza Request Form</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
 
 </head>
 
 <body>
-  <h1>Where is everyone?</h1>
-  <div id="map"></div>
-  <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUQjh7MyRdofLix9B0ynnXOc56tRp-tZ8&libraries=geometry">
-    </script>
-        <script type="text/javascript" src="script.js"></script>
-  <div id="locations"></div>
+  <h1>New Pizza Request</h1>
+      <div class="submitButton">
+        <form method="post">
+          <input id="contact" type="text" class="textbox" placeholder="Contact info">
+          <input title="Search" value="SUBMIT" onclick="finish(this)" class="button"> <!--type="submit"-->
+        </form>
+      </div>
 </body>
 
 </html>
