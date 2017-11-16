@@ -7,3 +7,7 @@ for a geolocation request.
 We also created the basic structure of the new pizza request
 form, in which the person can create a new pizza request and
 input information, such as type of pizza and contact info.
+
+# Comments by Ming
+* Any challenges and fails encountered for the week?
+* Upcoming challenges and goals?
