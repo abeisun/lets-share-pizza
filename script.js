@@ -1,7 +1,5 @@
-window.onload = loadMap();
 
 function loadMap() {
-    console.log("Got here");
     /* Fetch the user location */
     navigator.geolocation.getCurrentPosition(function (position) { 
 
@@ -11,5 +9,6 @@ function loadMap() {
             center: {lat: position.coords.latitude, lng: position.coords.longitude},
             mapTypeId: 'terrain'
         });
+
     } );
 }
