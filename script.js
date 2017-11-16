@@ -1,10 +1,11 @@
 
 function loadMap() {
+
     /* Fetch the user location */
     navigator.geolocation.getCurrentPosition(function (position) { 
         var curr_lat = position.coords.latitude;
         var curr_lng = position.coords.longitude;
-
+        var map_lat_lng = new google.maps.LatLng(curr_lat, curr_lng);
         /* Instantiate and initialize the map at the current location */
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
@@ -14,7 +15,7 @@ function loadMap() {
 
         /* Place a marker to ID the user onto the map */
         var user = new google.maps.Marker({
-                position: new google.maps.LatLng(curr_lat, curr_lng),
+                position: map_lat_lng,
                 zIndex: 100
             });
 
@@ -28,6 +29,27 @@ function loadMap() {
         });
         user.setMap(map);
 
+        var restaurant_req = {
+            location: map_lat_lng,
+            radius: 1600,
+            query: 'pizza'
+
+        };
+
+        /* Retrieves all nearby pizza shops */
+        var nearby = new google.maps.places.PlacesService(map);
+        nearby.textSearch(restaurant_req, function(results, status) {
+            /* Place on the map? */
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                   
+                    console.log(results[i]);
+
+                }
+            }
+        });
 
     } );
+
+
 }
