@@ -22,11 +22,21 @@ function loadMap() {
         /* Add a listener to open a dialogue linking to Pizza Form */
         user.addListener("click", function() {
                 infowindow = new google.maps.InfoWindow({
-                    content: '<h1>New Pizza Request</h1><div class="submitButton">\
-                    <form action="/submit_request.html" method="post">\
-                    <input id="contact" type="text" placeholder="Contact info">\
-                    <input type="submit" value="Submit"></button>\
-                    </form></div>'
+                    content: 
+    '<h2>New Pizza Request</h2>\
+    <div class="submitButton">\
+        <form action="/submit_request.html" method="post">\
+            How many slices would you like?<br>\
+            <input id="slices" type="text"><br>\
+            How should other people get in touch with you?<br>\
+            <input id="contact" type="text" placeholder="Email, phone, etc."><br>\
+            What kind of pizza do you want?<br>\
+            <input id="pizza_type" type="text"><br>\
+            Where are you ordering from?<br>\
+            <input id="pizza_shop" type="text"><br>\
+            <input type="submit" value="Submit"></button>\
+        </form>\
+    </div>'
 
                 });
                 infowindow.open(map, user);
