@@ -17,9 +17,23 @@
 
 		</form>
 
-		<a class= "button" role = "button">submit request</a>
+		<button onclick="loadData()" type= "button" class= "btn btn-default" role = "button">submit request</button>
 
 	</div>
+
+	<script type="text/javascript">
+		function loadData()
+		{
+			var slice_info =[];
+			var form = document.getElementById("form");
+			var name = form.elements[0].value;
+			var contact = form.elements[1].value;
+			var num_slices = form.elements[2].value;
+
+			url = "http://google.com/WhatsTheUrl"
+			$.post(url, {name: name, contact_info: contact, num_slices: num_slices});
+		}
+	</script>
 </body>
 
 </html>
