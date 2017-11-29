@@ -1,0 +1,22 @@
+/* style sheet for about.html */
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	margin-left: 30px;
+}
+
+h1 {
+	font-size: 45px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+ol {
+	font-size: 20px;
+}
+
+h3 {
+	font-size: 25px;
+}
