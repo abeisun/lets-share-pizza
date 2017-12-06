@@ -1,12 +1,24 @@
-# Identify what aspects of the work have been correctly implemented and what have not.
+### Actually read this @the group!
 
-## I believe I have implemented everything detailed in the assignment sheet.
+### This contains real information about the server, and what needs to be done to finalize it.
 
-# Identify anyone with whom you have collaborated or discussed the assignment.
+### Routes that need to be finalized
 
-## I have not collaborated with anyone on this assignment, but did recieve some
-## great help from Ming on Piazza.
+* POST /startOrder
+* POST /requestSlice
 
-# Say approximately how many hours you have spent completing the assignment.
+### Running the local web server
 
-## I spent around four hours working on this assignment.
+Just cd into this folder here (node-js-archetype) and run `heroku local web`
+
+### Other misc stuff that needs to be finalized
+
+To write the remaining routes, we need a database with proper collections
+
+To finish the site, we need to connect this application to a heroku server
+
+### Basic structure of this directory
+
+Finished pages go into the `pages` directory - in the index.js file, this 
+directory is set as the root for the entire directory on `index.js:23`
+
