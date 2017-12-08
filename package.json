@@ -4,7 +4,7 @@
   "description": "I want a pizza, but I don't want a whole one",
   "main": "script.js",
   "scripts": {
-    "start": "node script.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/tuftsdev/comp20-f2017-team2/issues"
   },
-  "homepage": "https://github.com/tuftsdev/comp20-f2017-team2#readme"
+  "homepage": "https://github.com/tuftsdev/comp20-f2017-team2#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "path": "^0.12.7"
+  }
 }
