@@ -1,20 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html>
+
 <head>
-<title>New Pizza Request Form</title>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+	<title>Slice Request</title>
 
 </head>
 
 <body>
-  <h1>New Pizza Request</h1>
-      <div class="submitButton">
-        <form method="post">
-          <input id="contact" type="text" class="textbox" placeholder="Contact info">
-          <input title="Search" value="SUBMIT" onclick="finish(this)" class="button"> <!--type="submit"-->
-        </form>
-      </div>
+	<h1>New order!</h1>
+	<div class = "new-order">
+		<form id = "new_form">
+			Name: <input type = "text" name = "input" value = ""/></br></br>
+			Contact Info: <input type = "text" name = "input" value = ""/></br></br>
+			Number of slices: <input type = "text" name = "input" value = ""/></br></br>
+
+		</form>
+
+		<button onclick="loadData()" type= "button" class= "btn btn-default" role = "button">submit request</button>
+
+	</div>
+
+	<script type="text/javascript">
+		function loadData()
+		{
+			var slice_info =[];
+			var form = document.getElementById("new-form");
+			var name = form.elements[0].value;
+			var contact = form.elements[1].value;
+			var num_slices = form.elements[2].value;
+
+			url = "http://google.com/WhatsTheUrl"
+			$.post(url, {name: name, contact_info: contact, num_slices: num_slices});
+		}
+	</script>
 </body>
 
 </html>
