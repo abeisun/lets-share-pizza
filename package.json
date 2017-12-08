@@ -1,0 +1,20 @@
+{
+  "name": "share-pizza",
+  "version": "1.0.0",
+  "description": "I want a pizza, but I don't want a whole one",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuftsdev/comp20-f2017-team2.git"
+  },
+  "author": "comp20-f2017-team2",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tuftsdev/comp20-f2017-team2/issues"
+  },
+  "homepage": "https://github.com/tuftsdev/comp20-f2017-team2#readme"
+}
