@@ -93,6 +93,55 @@ function loadMap() {
         });
 
     });
+}
 
+function getCurrentRequests()
+{
+    request = new XMLHttpRequest();
+    request.open("POST", "https://name-of-proj.herokuapp.com/sendLocation", true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.onreadystatechange = function() {//Call a function when the state changes.
+    if(request.readyState == 4 && request.status == 200) {
+        parseData();
+    }
+    }
+    request.send();
+}
+function parseData()
+{
+    locations = JSON.parse(request.responseText);
+    addRequests();
+}
 
+function addRequests()
+{
+    var image = {
+        url: "pizzaprototype.png",
+        scaledSize: new google.maps.Size(50, 50)
+    };
+    //var image = "cat_icon.png";
+    for (var person in locations.people){
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations.people[person].lat, locations.people[person].lng),
+            map:map,
+            icon: image,
+            login: locations.people[person].login
+        });
+
+        google.maps.event.addListener(marker, 'click', function (){
+            distance_from = google.maps.geometry.spherical.computeDistanceBetween(me, this.position)/1609.344;
+            contentString = '<p class="login">'+this.pizza_type+'<p/><p>is <span class="distance"> ' + distance_from.toString() + "</span> miles away<p/>\
+            <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
+  <div class="modal-content">\
+    <span class="close">&times;</span>\
+    <p>Some text in the Modal..</p>\
+  </div>\
+</div>";
+
+            infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            infowindow.open(map, this);
+        });
+    }
 }
