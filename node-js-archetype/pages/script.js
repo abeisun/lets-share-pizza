@@ -93,6 +93,7 @@ function loadMap() {
         });
 
     });
+    getCurrentRequests();
 }
 
 function getCurrentRequests()
@@ -130,7 +131,7 @@ function addRequests()
 
         google.maps.event.addListener(marker, 'click', function (){
             distance_from = google.maps.geometry.spherical.computeDistanceBetween(me, this.position)/1609.344;
-            contentString = '<p class="login">'+this.pizza_type+'<p/><p>is <span class="distance"> ' + distance_from.toString() + "</span> miles away<p/>\
+            contentString = '<p class="login">'+this.toppings+'<p/><p>is <span class="distance"> ' + distance_from.toString() + "</span> miles away<p/>\
             <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
               <div class="modal-content">\
                 <span class="close">&times;</span>\
