@@ -63,8 +63,7 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
-    var objId = req.body.objID;
-    console.log("objID: " + objID);
+    var objID = req.body.objID;
     orderModel.findById(objID, function (err, order) {
         if (err) {
             console.log(err);
