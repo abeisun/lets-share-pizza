@@ -160,8 +160,8 @@ function addRequests()
         url: "pizzaprototype.png",
         scaledSize: new google.maps.Size(50, 50)
     };
-    //var image = "cat_icon.png";
     console.log("in addRequests");
+
     for (var location in orders){
         console.log(location);
         marker = new google.maps.Marker({
@@ -208,7 +208,7 @@ function addRequests()
                 content: contentString
             });
             infowindow.open(map, this);
-        //});
+        });
     }
 }
 
