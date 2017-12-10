@@ -121,9 +121,9 @@ function addRequests()
         scaledSize: new google.maps.Size(50, 50)
     };
     //var image = "cat_icon.png";
-    for (var person in locations.people){
+    for (var location in order){
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations.people[person].lat, locations.people[person].lng),
+            position: new google.maps.LatLng(location.lat, locations.lng),
             map:map,
             icon: image,
             login: locations.people[person].login
@@ -131,13 +131,13 @@ function addRequests()
 
         google.maps.event.addListener(marker, 'click', function (){
             distance_from = google.maps.geometry.spherical.computeDistanceBetween(me, this.position)/1609.344;
-            contentString = '<p class="login">'+this.toppings+'<p/><p>is <span class="distance"> ' + distance_from.toString() + "</span> miles away<p/>\
+            contentString = '<p class="login">'+this.toppings+'<p/><p>is <span class="distance"> ' + distance_from.toString() + '</span> miles away<p/>\
             <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
               <div class="modal-content">\
                 <span class="close">&times;</span>\
                 <p>Some text in the Modal..</p>\
               </div>\
-            </div>";
+            </div>';
         var modal = document.getElementById('myModal');
 
         // Get the button that opens the modal
