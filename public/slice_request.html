@@ -27,7 +27,7 @@
 			var form = document.getElementById("form");
 			var numSlices = form.elements[0].value;
             var contact = { 'name': form.elements[1].value, 'phoneNumber': form.elements[2].value };
-            var objID = form.element[3].value;
+            var objID = form.elements[3].value;
 			url = "https://lets-share-pizza.herokuapp.com/addToOrder";
 			$.post(url, { 'objID': objID, 'numSlices': numSlices, 'contact': contact });
 		}
