@@ -33,7 +33,7 @@
 			//var contact = form.elements[1].value;
 			var numSlices = form.elements[0].value;
 			console.log("psn: " + pizzaShopName + "    numslices: " + numSlices)
-			url = "lets";
+			url = "https://lets-share-pizza.herokuapp.com/startOrder";
 			$.post(url, {'pizzaShopName': pizzaShopName, 'numSlices': numSlices});
 		}
 	</script>

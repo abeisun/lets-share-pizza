@@ -16,7 +16,7 @@ app.listen(app.get('port'), function() {
 });
 
 const mongoose = require('mongoose');
-var mongoDB = 'mongodb://127.0.0.1/pizza';    //transition to mlab eventually
+var mongoDB = process.env.MONGODB_URI || 'mongodb://localhost/orders';
 
 mongoose.connect(mongoDB, {
     useMongoClient: true
