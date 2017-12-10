@@ -24,11 +24,11 @@ mongoose.connect(mongoUri, {
 
 var orderModel = require('./models/orderModel.js');
 
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
 	res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 });
 
-app.post('/startOrder', function(req, res){
+app.post('/startOrder', function(req, res) {
     var order = new orderModel({
         numSlices: req.body.numSlices,
         pizzaShopName: req.body.pizzaShopName,
@@ -48,3 +48,29 @@ app.post('/startOrder', function(req, res){
         return res.status(201).json(order);
     });
 });
+
+// app.get('/orders.json', function(req, res) {
+//     var objID = req.query.objID;
+//     if (!objID) {
+//         res.json([]);
+//     }
+//     db.collection('checkins').findById
+// });
+
+app.get('/allOrders.json', function(req, res) {
+    orderModel.find({}, function(err, orders) {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: 'error when changing orders',
+                error: err
+            });
+        }
+        return res.json(orders);
+    });
+});
+
+// app.post('/addToOrder', function(req, res) {
+//     var orderId = req.body.objID;
+//     orderModel.findOne({ 
+// }
