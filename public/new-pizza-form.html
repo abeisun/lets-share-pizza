@@ -15,6 +15,7 @@
 			<!--Contact Info: <input type = "text" name = "input" value = ""/></br></br>-->
 			Number of slices: <input type = "text" name = "input" value = ""/></br></br>
 			Pizza Shop Name: <input type = "text" name = "input" value = ""/></br></br>
+			toppings: <input type = "text" name = "input" value = ""/></br></br>
 		</form>
 
 		<button onclick="loadData()" type= "button" class= "btn btn-default" role = "button">submit request</button>
@@ -29,12 +30,12 @@
 			//var slice_info =[];
 			var form = document.getElementById("new_form");
 			console.log(form);
-			var pizzaShopName = form.elements[1].value;
-			//var contact = form.elements[1].value;
 			var numSlices = form.elements[0].value;
+			var pizzaShopName = form.elements[1].value;
+            var toppings = form.elements[2].value;
 			console.log("psn: " + pizzaShopName + "    numslices: " + numSlices)
 			url = "https://lets-share-pizza.herokuapp.com/startOrder";
-			$.post(url, {'pizzaShopName': pizzaShopName, 'numSlices': numSlices});
+			$.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'coordinates': [50, -40] });
 		}
 	</script>
 </body>
