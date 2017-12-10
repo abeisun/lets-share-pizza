@@ -63,7 +63,8 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
-    var objId = req.body.objID;
+    var objID = req.body.objID;
+    console.log('numSlices: ' + req.body.numSlices);
     orderModel.findById(objID, function (err, order) {
         if (err) {
             console.log(err);
@@ -78,7 +79,7 @@ app.post('/addToOrder', function(req, res) {
                 message: 'too many slices (8 slices max)'
             });
         }
-        orders.contacts.push(req.body.contact);
+        // order.contacts.push(req.body.contact);
         order.save(function(err, updatedOrder) {
             if (err) {
                 console.log(err);
