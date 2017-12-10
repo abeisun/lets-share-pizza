@@ -22,7 +22,7 @@ mongoose.connect(mongoDB, {
     useMongoClient: true
 });
 
-var orderModel = require('../models/orderModel.js');
+var orderModel = require('./models/orderModel.js');
 
 app.get('/', function(req, res){
 	res.sendFile('index.html', {root: path.join(__dirname, 'public')});
@@ -31,10 +31,10 @@ app.get('/', function(req, res){
 app.post('/startOrder', function(req, res){
     var order = new orderModel({
         numSlices: req.body.numSlices,
-        pizzaShopName: req.body.pizzaShopName,
-        toppings: req.body.toppings,
+        pizzaShopName: req.body.pizzaShopName
+        // toppings: req.body.toppings,
         // contactInfo: req.body.contactInfo,
-        coordinates: req.body.coordinates
+        // coordinates: req.body.coordinates
     });
 
     order.save(function (err, order) {
@@ -48,14 +48,3 @@ app.post('/startOrder', function(req, res){
         return res.status(201).json(order);
     });
 });
-
-
-
-
-
-    var numSlices = parseFloat(req.body.numSlices);
-    var pizzaShop = req.body.pizzaShop;
-    var toppings = req.body.
-    res.send();
-});
-
