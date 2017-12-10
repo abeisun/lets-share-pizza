@@ -123,6 +123,7 @@ function addRequests()
     //var image = "cat_icon.png";
     for (var order in orders){
         marker = new google.maps.Marker({
+            console.log(order);
             position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
             map:map,
             icon: image,
