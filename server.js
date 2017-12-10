@@ -16,9 +16,9 @@ app.listen(app.get('port'), function() {
 });
 
 const mongoose = require('mongoose');
-var mongoDB = process.env.MONGODB_URI || 'mongodb://localhost/orders';
+var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/orders';
 
-mongoose.connect(mongoDB, {
+mongoose.connect(mongoUri, {
     useMongoClient: true
 });
 
@@ -31,10 +31,10 @@ app.get('/', function(req, res){
 app.post('/startOrder', function(req, res){
     var order = new orderModel({
         numSlices: req.body.numSlices,
-        pizzaShopName: req.body.pizzaShopName
-        // toppings: req.body.toppings,
-        // contactInfo: req.body.contactInfo,
-        // coordinates: req.body.coordinates
+        pizzaShopName: req.body.pizzaShopName,
+        toppings: req.body.toppings,
+        contactInfo: req.body.contactInfo,
+        coordinates: req.body.coordinates
     });
 
     order.save(function (err, order) {
