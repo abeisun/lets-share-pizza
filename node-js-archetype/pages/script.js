@@ -32,7 +32,7 @@ function loadMap() {
             <input id="contact" type="text" placeholder="Email, phone, etc." name="contact_info"><br>\
             What kind of pizza do you want?<br>\
             <input id="pizza_type" type="text" name="type_of"><br>\
-            Where are you ordering from?<br>\
+            What pizza shop are you ordering from?<br>\
             <input id="pizza_shop" type="text" name="shop"><br>\
             <input type="submit" value="Submit"></button>\
         </form>\
