@@ -3,18 +3,18 @@
 <html>
 
 <head>
-	<title>Slice Request</title>
-
+	<title>Add To Pizza Request</title>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
 	<h1>Request a slice!</h1>
 	<div class = "slice-req">
 		<form id = "form">
-			Name: <input type = "text" name = "input" value = ""/></br></br>
-			Contact Info: <input type = "text" name = "input" value = ""/></br></br>
 			Number of slices: <input type = "text" name = "input" value = ""/></br></br>
-
+			Your Name: <input type = "text" name = "input" value = ""/></br></br>
+			Phone Number: <input type = "text" name = "input" value = ""/></br></br>
+            objectID (for testing): <input type = "text" name = "input" value = ""/></br></br>
 		</form>
 
 		<button onclick="loadData()" type= "button" class= "btn btn-default" role = "button">submit request</button>
@@ -24,14 +24,12 @@
 	<script type="text/javascript">
 		function loadData()
 		{
-			var slice_info =[];
 			var form = document.getElementById("form");
-			var name = form.elements[0].value;
-			var contact = form.elements[1].value;
-			var num_slices = form.elements[2].value;
-
-			url = "http://google.com/WhatsTheUrl"
-			$.post(url, {name: name, contact_info: contact, num_slices: num_slices});
+			var numSlices = form.elements[0].value;
+            var contact = { 'name': form.elements[1].value, 'phoneNumber': form.elements[2].value };
+            var objID = form.element[3].value;
+			url = "https://lets-share-pizza.herokuapp.com/addToOrder";
+			$.post(url, { 'objID': objID, 'numSlices': numSlices, 'contact': contact });
 		}
 	</script>
 </body>

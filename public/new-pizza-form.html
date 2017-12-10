@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>Slice Request</title>
+	<title>New Pizza Request</title>
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -30,13 +30,10 @@
 
 		function loadData()
 		{
-			//var slice_info =[];
 			var form = document.getElementById("new_form");
-			console.log(form);
 			var numSlices = form.elements[0].value;
 			var pizzaShopName = form.elements[1].value;
             var toppings = form.elements[2].value;
-			console.log("psn: " + pizzaShopName + "    numslices: " + numSlices)
 			url = "https://lets-share-pizza.herokuapp.com/startOrder";
             var contact = { 'name': form.elements[3].value, 'phoneNumber': form.elements[4].value };
 			$.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [50, -40] });

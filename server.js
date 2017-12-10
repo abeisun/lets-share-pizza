@@ -54,7 +54,7 @@ app.get('/allOrders.json', function(req, res) {
         if (err) {
             console.log(err);
             return res.status(500).json({
-                message: 'error when changing orders',
+                message: 'error when getting all orders',
                 error: err
             });
         }
@@ -62,7 +62,32 @@ app.get('/allOrders.json', function(req, res) {
     });
 });
 
-// app.post('/addToOrder', function(req, res) {
-//     var orderId = req.body.objID;
-//     orderModel.findOne({ 
-// }
+app.post('/addToOrder', function(req, res) {
+    var objId = req.body.objID;
+    orderModel.findById(objID, function (err, order) {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: 'error when locating order',
+                error: err
+            });
+        }
+        order.size = order.size + req.body.numSlices;
+        if (order.size > 8) {
+            return res.status(400).json({
+                message: 'too many slices (8 slices max)'
+            });
+        }
+        orders.contacts.push(req.body.contact);
+        order.save(function(err, updatedOrder) {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    message: 'error when updating order',
+                    error: err
+                });
+            }
+        return res.json(updatedOrder);
+        });
+    });
+});
