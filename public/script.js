@@ -162,8 +162,8 @@ function addRequests()
     };
     //var image = "cat_icon.png";
     for (var location in orders){
+        console.log(location);
         marker = new google.maps.Marker({
-            console.log(location);
             position: new google.maps.LatLng(location.coordinates[0], location.coordinates[1]),
             map:map,
             icon: image,
