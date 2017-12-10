@@ -38,6 +38,7 @@ app.post('/startOrder', function(req, res){
         // contactInfo: req.body.contactInfo,
         // coordinates: req.body.coordinates
     });
+    console.log("mongoose: " + mongoose.connection.readyState);
 
     order.save(function (err, order) {
         if (err) {
