@@ -140,22 +140,17 @@ function startOrder()
 function getCurrentRequests()
 {
     request = new XMLHttpRequest();
-<<<<<<< HEAD
-    request.open("POST", "https://lets-share-pizza.herokuapp.com/requestSlice", true);
-=======
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
->>>>>>> d7e96c6fd7d8d4572483ca5ed78f414c7a7fd6d3
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.onreadystatechange = function() {//Call a function when the state changes.
     if(request.readyState == 4 && request.status == 200) {
         parseData();
     }
-    }
     request.send();
 }
 function parseData()
 {
-    locations = JSON.parse(request.responseText);
+    orders = JSON.parse(request.responseText);
     addRequests();
 }
 
@@ -166,14 +161,10 @@ function addRequests()
         scaledSize: new google.maps.Size(50, 50)
     };
     //var image = "cat_icon.png";
-    for (var location in order){
+    for (var location in orders){
         marker = new google.maps.Marker({
-<<<<<<< HEAD
-            console.log(order);
-            position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
-=======
-            position: new google.maps.LatLng(location.lat, locations.lng),
->>>>>>> 2d17c17b95b6459b35d10b468b5058cbaf3f9331
+            console.log(location);
+            position: new google.maps.LatLng(location.coordinates[0], location.coordinates[1]),
             map:map,
             icon: image,
             login: locations.people[person].login
