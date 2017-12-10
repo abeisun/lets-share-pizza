@@ -25,15 +25,15 @@ function loadMap() {
                     content: 
     '<h2>New Pizza Request</h2>\
     <div class="submitButton">\
-        <form action="/submit_request.html" method="post">\
+        <form action="/startOrder" method="post">\
             How many slices would you like?<br>\
-            <input id="slices" type="text"><br>\
+            <input id="slices" type="text" name="num_slices"><br>\
             How should other people get in touch with you?<br>\
-            <input id="contact" type="text" placeholder="Email, phone, etc."><br>\
+            <input id="contact" type="text" placeholder="Email, phone, etc." name="contact_info"><br>\
             What kind of pizza do you want?<br>\
-            <input id="pizza_type" type="text"><br>\
-            Where are you ordering from?<br>\
-            <input id="pizza_shop" type="text"><br>\
+            <input id="pizza_type" type="text" name="type_of"><br>\
+            What pizza shop are you ordering from?<br>\
+            <input id="pizza_shop" type="text" name="shop"><br>\
             <input type="submit" value="Submit"></button>\
         </form>\
     </div>'
@@ -93,6 +93,79 @@ function loadMap() {
         });
 
     });
+    getCurrentRequests();
+}
 
+function getCurrentRequests()
+{
+    request = new XMLHttpRequest();
+    request.open("POST", "https://lets-share-pizza.herokuapp.com/requestSlice", true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.onreadystatechange = function() {//Call a function when the state changes.
+    if(request.readyState == 4 && request.status == 200) {
+        parseData();
+    }
+    }
+    request.send();
+}
+function parseData()
+{
+    locations = JSON.parse(request.responseText);
+    addRequests();
+}
 
+function addRequests()
+{
+    var image = {
+        url: "pizzaprototype.png",
+        scaledSize: new google.maps.Size(50, 50)
+    };
+    //var image = "cat_icon.png";
+    for (var location in order){
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, locations.lng),
+            map:map,
+            icon: image,
+            login: locations.people[person].login
+        });
+
+        google.maps.event.addListener(marker, 'click', function (){
+            distance_from = google.maps.geometry.spherical.computeDistanceBetween(me, this.position)/1609.344;
+            contentString = '<p class="login">'+this.toppings+'<p/><p>is <span class="distance"> ' + distance_from.toString() + '</span> miles away<p/>\
+            <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
+              <div class="modal-content">\
+                <span class="close">&times;</span>\
+                <p>Some text in the Modal..</p>\
+              </div>\
+            </div>';
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+            infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            infowindow.open(map, this);
+        });
+    }
 }

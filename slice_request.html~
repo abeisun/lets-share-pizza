@@ -8,9 +8,9 @@
 </head>
 
 <body>
-	<h1>New order!</h1>
-	<div class = "new-order">
-		<form id = "new_form">
+	<h1>Request a slice!</h1>
+	<div class = "slice-req">
+		<form id = "form">
 			Name: <input type = "text" name = "input" value = ""/></br></br>
 			Contact Info: <input type = "text" name = "input" value = ""/></br></br>
 			Number of slices: <input type = "text" name = "input" value = ""/></br></br>
@@ -25,7 +25,7 @@
 		function loadData()
 		{
 			var slice_info =[];
-			var form = document.getElementById("new-form");
+			var form = document.getElementById("form");
 			var name = form.elements[0].value;
 			var contact = form.elements[1].value;
 			var num_slices = form.elements[2].value;
