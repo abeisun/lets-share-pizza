@@ -33,7 +33,7 @@ app.post('/startOrder', function(req, res){
         numSlices: req.body.numSlices,
         pizzaShopName: req.body.pizzaShopName,
         toppings: req.body.toppings,
-        // contactInfo: req.body.contactInfo,
+        contactInfo: req.body.contactInfo,
         coordinates: req.body.coordinates
     });
 
