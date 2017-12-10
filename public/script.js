@@ -99,7 +99,7 @@ function loadMap() {
 function getCurrentRequests()
 {
     request = new XMLHttpRequest();
-    request.open("POST", "https://lets-share-pizza.herokuapp.com/requestSlice", true);
+    request.open("POST", "https://lets-share-pizza.herokuapp.com/addToOrder", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.onreadystatechange = function() {//Call a function when the state changes.
     if(request.readyState == 4 && request.status == 200) {
