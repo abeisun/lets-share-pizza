@@ -110,7 +110,7 @@ function getCurrentRequests()
 }
 function parseData()
 {
-    locations = JSON.parse(request.responseText);
+    orders = JSON.parse(request.responseText);
     addRequests();
 }
 
@@ -121,51 +121,50 @@ function addRequests()
         scaledSize: new google.maps.Size(50, 50)
     };
     //var image = "cat_icon.png";
-    for (var location in order){
+    for (var order in orders){
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(location.lat, locations.lng),
+            position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
             map:map,
             icon: image,
-            login: locations.people[person].login
         });
 
-        google.maps.event.addListener(marker, 'click', function (){
-            distance_from = google.maps.geometry.spherical.computeDistanceBetween(me, this.position)/1609.344;
-            contentString = '<p class="login">'+this.toppings+'<p/><p>is <span class="distance"> ' + distance_from.toString() + '</span> miles away<p/>\
-            <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
-              <div class="modal-content">\
-                <span class="close">&times;</span>\
-                <p>Some text in the Modal..</p>\
-              </div>\
-            </div>';
-        var modal = document.getElementById('myModal');
+    google.maps.event.addListener(marker, 'click', function (){
+        distance_from = google.maps.geometry.spherical.computeDistanceBetween(me, this.position)/1609.344;
+        contentString = '<p class="login">'+this.toppings+'<p/><p>is <span class="distance"> ' + distance_from.toString() + '</span> miles away<p/>\
+        <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
+          <div class="modal-content">\
+            <span class="close">&times;</span>\
+            <p>Some text in the Modal..</p>\
+          </div>\
+        </div>';
+    var modal = document.getElementById('myModal');
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-            infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-            infowindow.open(map, this);
+    }
+        infowindow = new google.maps.InfoWindow({
+            content: contentString
         });
+        infowindow.open(map, this);
+    });
     }
 }
