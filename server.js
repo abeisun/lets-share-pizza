@@ -78,7 +78,7 @@ app.post('/addToOrder', function(req, res) {
                 message: 'too many slices (8 slices max)'
             });
         }
-        order.contacts.push(req.body.contact);
+        // order.contacts.push(req.body.contact);
         order.save(function(err, updatedOrder) {
             if (err) {
                 console.log(err);
