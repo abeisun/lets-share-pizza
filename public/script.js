@@ -140,7 +140,11 @@ function startOrder()
 function getCurrentRequests()
 {
     request = new XMLHttpRequest();
+<<<<<<< HEAD
     request.open("POST", "https://lets-share-pizza.herokuapp.com/requestSlice", true);
+=======
+    request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
+>>>>>>> d7e96c6fd7d8d4572483ca5ed78f414c7a7fd6d3
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.onreadystatechange = function() {//Call a function when the state changes.
     if(request.readyState == 4 && request.status == 200) {
