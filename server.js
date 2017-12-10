@@ -16,9 +16,10 @@ app.listen(app.get('port'), function() {
 });
 
 const mongoose = require('mongoose');
-var mongoDB = process.env.MONGODB_URI || 'mongodb://localhost/orders';
+var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/orders';
 
-mongoose.connect(mongoDB, {
+console.log("uri is: " + mongoUri);
+mongoose.connect(mongoUri, {
     useMongoClient: true
 });
 
