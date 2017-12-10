@@ -65,7 +65,7 @@ app.get('/allOrders.json', function(req, res) {
 app.post('/addToOrder', function(req, res) {
     orderModel.findByIdAndUpdate(req.body.objID, 
         { $push: { 'contacts': req.body.contact },
-        $inc: { 'size': req.body.numSlices } }, 
+        $inc: { 'numSlices': req.body.numSlices } }, 
         function (err, updatedOrder) {
             if (err) {
                 console.log(err);
