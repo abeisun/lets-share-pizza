@@ -63,24 +63,10 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
-    var objID = req.body.objID;
-    orderModel.findById(objID, function (err, order) {
-        console.log('order' + order);
-        if (err) {
-            console.log(err);
-            return res.status(500).json({
-                message: 'error when locating order',
-                error: err
-            });
-        }
-        order.size = order.size + req.body.numSlices;
-        if (order.size > 8) {
-            return res.status(400).json({
-                message: 'too many slices (8 slices max)'
-            });
-        }
-        // order.contacts.push(req.body.contact);
-        order.save(function(err, updatedOrder) {
+    orderModel.findByIdAndUpdate(req.body.objID, 
+        { $push: { 'contacts': res.body.contact },
+        $inc: { 'size': req.body.numSlices } }, 
+        function (err, updatedOrder) {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
@@ -88,7 +74,6 @@ app.post('/addToOrder', function(req, res) {
                     error: err
                 });
             }
-        return res.json(updatedOrder);
+            return res.json(updatedOrder);
         });
-    });
 });
