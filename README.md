@@ -33,3 +33,10 @@ We will use the location of the request and the location of the user to calculat
 * Fun idea
 * Sorry, Geolocation, front-end framework are not features.  What will geolocation be used for? Ditto with email.  A feature is *what* the user(s) will *do*
 * Missing: list of pizza shops in an area
+
+
+
+# Routes
+
+To send a new request via curl:
+    curl --data "contactName=martin&contactInfo=myroom&pizzaShop=espresso&topping=pepperoni&numSlices=3" localhost:3000/newRequest
