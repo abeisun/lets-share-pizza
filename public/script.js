@@ -208,7 +208,7 @@ function addRequests()
                 content: contentString
             });
             infowindow.open(map, this);
-        });
+        //});
     }
 }
 
