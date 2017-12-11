@@ -4,34 +4,73 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0">
     <title>Pizza related name</title>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
     <link rel="shortcut icon" type="image/png" href="purple_pizza.png"
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 
 <body>
 
     <div id="map"></div>
-    <div class="modal fade right" id="initReqButton" role="dialog">
+
+    <!-- Modal for New Order -->
+<div id="newOrderModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
     <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="modal-header">
-    <h4 class="modal-title">Pizza Request Form</h4>
-    </div>
-    <div class="modal-body">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Pizza Order</h4>
+      </div>
+      <div class="modal-body">
     <form id = "neworder_form">
+    Pizza Shop Name: <div id="no-pizza-shop-name">default</div><br></br>
     Name: <input type = "text" name = "input" value = ""/></br></br>
     Number of Slices: <input type = "text" name = "input" value = ""/></br></br>
     Toppings: <input type = "text" name = "input" value = ""/></br></br>
     Phone Number: <input type = "text" name = "input" value = ""/></br></br>
-    Pizza Shop Name: <input type = "text" name = "input" value = ""/></br></br>
     </form>
     <button type = "button" onclick="startOrder()" class= "btn btn-default" role="button">Submit
-    </div>
-    </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
 
+  </div>
+</div>
+
+    <!-- Modal for Adding To Order -->
+<div id="addToOrder" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Pizza Order</h4>
+      </div>
+      <div class="modal-body">
+    <form id = "addtoorder_form">
+    Pizza Shop Name: <div id="pizza-shop-name">default</div><br></br>
+    Name: <input type = "text" name = "input" value = ""/></br></br>
+    Number of Slices: <input type = "text" name = "input" value = ""/></br></br>
+    Toppings: <input type = "text" name = "input" value = ""/></br></br>
+    Phone Number: <input type = "text" name = "input" value = ""/></br></br>
+    </form>
+    <button type = "button" onclick="addToOrder()" class= "btn btn-default" role="button">Submit
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvv09pm5FSohJnXwnxEpZ300IVlCRHYRE&libraries=geometry,places&callback=loadMap"></script>
 
