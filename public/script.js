@@ -28,20 +28,7 @@ function loadMap() {
         user.addListener("click", function() {
                 infowindow = new google.maps.InfoWindow({
                     content: 
-                    '<h2>New Pizza Request</h2>\
-                    <div class="submitButton">\
-                        <form action="/startOrder" method="post">\
-                            How many slices would you like?<br>\
-                            <input id="slices" type="text" name="num_slices"><br>\
-                            How should other people get in touch with you?<br>\
-                            <input id="contact" type="text" placeholder="Email, phone, etc." name="contact_info"><br>\
-                            What kind of pizza do you want?<br>\
-                            <input id="pizza_type" type="text" name="type_of"><br>\
-                            What pizza shop are you ordering from?<br>\
-                            <input id="pizza_shop" type="text" name="shop"><br>\
-                            <input type="submit" value="Submit"></button>\
-                        </form>\
-                    </div>'
+                        "<h2>Your Location</h2>"
                 });
                 infowindow.open(map, user);
         });
@@ -89,7 +76,7 @@ function getRestaurants() {
                             infowindow = new google.maps.InfoWindow({
                                 content: this.pizza_shop +
                                     '<div class="req_body">\
-                                        <button id = "modal-btn" type="button" data-toggle="modal" data-target="#initReqButton">Create Pizza Request</button>\
+                                        <button id ="modal-btn" type="button" data-toggle="modal" data-target="#initReqButton">Create Pizza Request</button>\
                                         <div class="modal fade right" id="initReqButton" role="dialog">\
                                         <div class="modal-content">\
                                             <span class="close">&times;</span>\
@@ -113,19 +100,20 @@ function getRestaurants() {
                                                 <button type = "button" class="btn btn-default" data-dismiss="modal">Submit</button>\
                                             </div>\*/
                                         //</div>'
-                                });
-                          /*  var modal = document.getElementById('req_body');
-                            //var span = document.getElementById("close")[0];
-                            var btn = document.getElementById("modal-btn");
-                            btn.onclick = function() {
-                                modal.style.display = "block";
-                            }
-                            span.onclick = function() {
-                                modal.style.display = "none";
-                            }
-                            */
+                            });
                             infowindow.open(map, this);
                         });
+                        /*
+                        var modal = document.getElementById('req_body');
+                        var span = document.getElementById("close");
+                        var btn = document.getElementById("modal-btn");
+                            
+                        btn.onclick = function() {
+                            modal.style.display = "block";
+                        }
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        } */ 
                     }
                 }
             } 
@@ -199,7 +187,7 @@ function addRequests()
             var btn = document.getElementById("myBtn");
 
             // Get the <span> element that closes the modal
-            var span = document.getElementById("close")[0]; //??????
+            var span = document.getElementById("close")[0]; 
 
             // When the user clicks the button, open the modal 
             btn.onclick = function() {
