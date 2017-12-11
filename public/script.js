@@ -161,6 +161,7 @@ function getCurrentRequests()
     console.log(request.readyState + "and" + request.status);
     console.log("hiiiiii");
     if(request.readyState == 4 && request.status == 200) {
+        console.log("testing");
         parseData();
     }
     request.onreadystatechange = function() {//Call a function when the state changes.
