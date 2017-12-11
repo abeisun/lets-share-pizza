@@ -138,7 +138,7 @@ function addRequests()
     for (var order in orders) {
         console.log(order);
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
+            position: new google.maps.LatLng(orders[order].coordinates[0], orders[order].coordinates[1]),
             map:map,
             icon: image,
         });
