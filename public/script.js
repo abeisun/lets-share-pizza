@@ -157,8 +157,10 @@ function getCurrentRequests()
     request = new XMLHttpRequest();
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    console.log("before onreadystatechange");
     request.onreadystatechange = function() {//Call a function when the state changes.
         console.log(request.readyState + "and" + request.status);
+        console.log("hiiiiii");
         if(request.readyState == 4 && request.status == 200) {
             parseData();
         }
