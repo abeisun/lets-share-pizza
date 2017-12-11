@@ -156,7 +156,7 @@ function getCurrentRequests()
     console.log("getting current requests");
     request = new XMLHttpRequest();
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     console.log("before onreadystatechange");
     console.log(request.readyState + "and" + request.status);
     console.log("hiiiiii");
