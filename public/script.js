@@ -153,6 +153,7 @@ function startOrder()
 
 function getCurrentRequests()
 {
+    console.log("getting current requests");
     request = new XMLHttpRequest();
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
