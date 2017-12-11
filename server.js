@@ -74,6 +74,38 @@ app.post('/addToOrder', function(req, res) {
                     error: err
                 });
             }
+            textContact(updatedOrder);
+            orderModel.remove({'numSlices': 8}, function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
             return res.json(updatedOrder);
         });
 });
+
+const twilioClient = require('./private/twilioClient.js');
+
+function textContact(order) {
+    var textBody = "";
+    if (order.numSlices == 8) {
+        textBody += "Congratulations on finishing the pizza order!\n";
+    }
+    textBody += "Pizza Shop: " + order.pizzaShopName + "\nNumber of slices so far: " + order.numSlices + "\nToppings: " + order.toppings + '\n';
+    var contacts = order.contactInfo;
+    var numContacts = contacts.length;
+    
+    //populate the text body with contact info
+    for (var i = 0; i < numContacts; ++i) {
+        textBody += "Person " + (i+1) + ": " + contacts[i].name + "\nPhone #: " + contacts[i].phoneNumber + '\n';
+    }
+
+    //send SMS to each contact
+    for (var i = 0; i < numContacts; ++i) {
+        twilioClient.messages.create({
+            to: contacts[i].phoneNumber,
+            from: '+16172092030',
+            body: textBody
+        }).then((message) => console.log(message.sid));
+    }
+}
