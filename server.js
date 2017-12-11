@@ -74,7 +74,7 @@ app.post('/addToOrder', function(req, res) {
                     error: err
                 });
             }
-            textContact(updatedOrder);
+            // textContact(updatedOrder);
             orderModel.remove({'numSlices': 8}, function(err) {
                 if (err) {
                     console.log(err);
