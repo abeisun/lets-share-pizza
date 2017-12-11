@@ -183,7 +183,6 @@ function addRequests()
             position: new google.maps.LatLng(location.coordinates[0], location.coordinates[1]),
             map:map,
             icon: image,
-            login: locations.people[person].login
         });
 
         google.maps.event.addListener(marker, 'click', function (){
