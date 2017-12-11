@@ -94,13 +94,19 @@ function textContact(order) {
     textBody += "Pizza Shop: " + order.pizzaShopName + "\nNumber of slices so far: " + order.numSlices + "\nToppings: " + order.toppings + '\n';
     var contacts = order.contactInfo;
     var numContacts = contacts.length;
-    for (var i = 1; i <= numContacts; ++i) {
-        textBody += "Person " + i + ": " + contacts[i].name + "\nPhone #: " + contacts[i].phoneNumber + '\n';
+    
+    //populate the text body with contact info
+    for (var i = 0; i < numContacts; ++i) {
+        textBody += "Person " + (i+1) + ": " + contacts[i].name + "\nPhone #: " + contacts[i].phoneNumber + '\n';
     }
-    client.messages.create({
-        to: contact.phoneNumber,
-        from: '+16172092030',
-        body: textBody
-    }).then((message) => console.log(message.sid));
+
+    //send SMS to each contact
+    for (var i = 0; i < numContacts; ++i) {
+        client.messages.create({
+            to: contacts[i].phoneNumber,
+            from: '+16172092030',
+            body: textBody
+        }).then((message) => console.log(message.sid));
+    }
 }
     
