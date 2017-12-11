@@ -1,3 +1,5 @@
+var orderobjid = 0;
+
 function loadMap() {
     /* Fetch the user location */
     navigator.geolocation.getCurrentPosition(function (position) { 
@@ -99,8 +101,10 @@ function startOrder()
     var toppings = form.elements[2].value;
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[3].value };
     var pizzaShopName = $("#no-pizza-shop-name").text();
-    url = "https://lets-share-pizza.herokuapp.com/startOrder";
-    $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] });
+    var url = "https://lets-share-pizza.herokuapp.com/startOrder";
+    $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] }, function () {  
+        window.location.replace("firstorder_success.html");
+    });
 }
 
 function getCurrentRequests()
@@ -123,7 +127,6 @@ function parseData()
 {
     console.log("parsing data");
     orders = JSON.parse(request.responseText);
-    console.log(orders);
     addRequests();
 }
 
@@ -134,20 +137,49 @@ function addRequests()
         scaledSize: new google.maps.Size(50, 50)
     };
     console.log("in addRequests");
-    console.log(orders);
-    for (var order in orders) {
-        console.log(order);
+    for (var i in orders) {
+        var order = orders[i];
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(orders[order].coordinates[0], orders[order].coordinates[1]),
+            position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
             map:map,
             icon: image,
         });
-    }
 
-    // infowindow = new google.maps.InfoWindow({
-    //     content: contentString
-    // });
-    // infowindow.open(map, this);
+        var contentString = "<h2>Add to this order<h2>" +
+            "<p>Number of slices: " + order.numSlices +"</p>" +
+            "<p>Pizza Shop: " + order.pizzaShopName + "</p>" +
+            "<p>Toppings: " + order.toppings + "</p>";
+
+        marker.addListener("mouseover", function() {
+            infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            infowindow.open(map, this);
+        });
+
+        marker.addListener('mouseout', function() {        
+           infowindow.close();
+        });
+
+        marker.addListener("click", function() {
+            orderobjid = order._id;
+            $("#ao-pizza-shop-name").text(this.pizza_shop);
+            $("#ao-slices-so-far").text(order.numSlices);
+            $("#ao-toppings").text(order.toppings);
+            $("#addToOrder").modal('show');
+        });
+    }
+}
+
+function addToOrder() 
+{
+    var form = document.getElementById("addtoorder_form");
+    var numSlices = form.element[1].value;
+    var contact = { 'name': form.element[0].value, 'phoneNumber': form.elements[2].value };
+    var url = "https://lets-share-pizza.herokuapp.com/addToOrder";
+    $.post(url, { 'objID': orderobjid, 'numSlices': numSlices, 'contact': contact }, function () {  
+        window.location.replace("add_success.html");
+    });
 }
 
  google.maps.event.addDomListener(window, 'load', getLocation);

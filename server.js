@@ -58,7 +58,10 @@ app.get('/allOrders.json', function(req, res) {
                 error: err
             });
         }
+<<<<<<< HEAD
       //  res.send(orders);
+=======
+>>>>>>> 4ea078f33700b5274d0c151b346b8f76c57d98ae
         return res.json(orders);
     });
 });
