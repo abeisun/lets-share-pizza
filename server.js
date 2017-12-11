@@ -3,7 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
-const http = require('http').Server(app);
+const http = require('https').Server(app);
 
 app.use(express.static(path.join(__dirname, '/public')));   //serve css and javascript along side html pages
 app.use(bodyParser.json());
