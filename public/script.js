@@ -1,3 +1,5 @@
+var orderobjid = 0;
+
 function loadMap() {
     /* Fetch the user location */
     navigator.geolocation.getCurrentPosition(function (position) { 
@@ -99,7 +101,7 @@ function startOrder()
     var toppings = form.elements[2].value;
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[3].value };
     var pizzaShopName = $("#no-pizza-shop-name").text();
-    url = "https://lets-share-pizza.herokuapp.com/startOrder";
+    var url = "https://lets-share-pizza.herokuapp.com/startOrder";
     $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] }, function () {  
         window.location.replace("firstorder_success.html");
     });
@@ -162,6 +164,7 @@ function addRequests()
         });
 
         marker.addListener("click", function() {
+            orderobjid = order._id;
             $("#ao-pizza-shop-name").text(this.pizza_shop);
             $("#ao-slices-so-far").text(order.numSlices);
             $("#ao-toppings").text(order.toppings);
@@ -172,5 +175,11 @@ function addRequests()
 
 function addToOrder() 
 {
-    
+    var form = document.getElementById("addtoorder_form");
+    var numSlices = form.element[1].value;
+    var contact = { 'name': form.element[0].value, 'phoneNumber': form.elements[2].value };
+    var url = "https://lets-share-pizza.herokuapp.com/addToOrder";
+    $.post(url, { 'objID': orderobjid, 'numSlices': numSlices, 'contact': contact }, function () {  
+        window.location.replace("add_success.html");
+    });
 }
