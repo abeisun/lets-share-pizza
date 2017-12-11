@@ -148,14 +148,12 @@ function addRequests()
             icon: image,
         });
 
-        var contentString = "<h2>Add to this order<h2>" +
-            "<p>Number of slices: " + order.numSlices +"</p>" +
-            "<p>Pizza Shop: " + order.pizzaShopName + "</p>" +
-            "<p>Toppings: " + order.toppings + "</p>";
-
         marker.addListener("mouseover", function() {
             infowindow = new google.maps.InfoWindow({
-                content: contentString
+                content: "<h2>Add to this order<h2>" +
+                "<p>Number of slices: " + order.numSlices +"</p>" +
+                "<p>Pizza Shop: " + order.pizzaShopName + "</p>" +
+                "<p>Toppings: " + order.toppings + "</p>";
             });
             infowindow.open(map, this);
         });
