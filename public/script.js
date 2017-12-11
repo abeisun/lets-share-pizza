@@ -140,7 +140,8 @@ function addRequests()
     var numOrders = orders.length;
     for (var i = 0; i < numOrders; ++i) {
         var order = orders[i];
-        console.log('order: ' + order);
+        console.log('order: ');
+        console.log(order);
         var currNumSlices = order.numSlices;
         var currPizzaShopName = order.pizzaShopName;
         var currToppings = order.toppings;
