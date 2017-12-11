@@ -77,24 +77,6 @@ function getRestaurants() {
                                 content: this.pizza_shop +
                                     '<div class="req_body">\
                                         <button id ="modal-btn" type="button" data-toggle="modal" data-target="#initReqButton">Create Pizza Request</button>\
-                                        <div class="modal fade right" id="initReqButton" role="dialog">\
-                                        <div class="modal-content">\
-                                            <span class="close">&times;</span>\
-                                            <div class="modal-header">\
-                                                <h4 class="modal-title">Pizza Request Form</h4>\
-                                            </div>\
-                                            <div class="modal-body">\
-                                                <form id = "neworder_form">\
-                                                    Name: <input type = "text" name = "input" value = ""/></br></br>\
-                                                    Number of Slices: <input type = "text" name = "input" value = ""/></br></br>\
-                                                    Toppings: <input type = "text" name = "input" value = ""/></br></br>\
-                                                    Phone Number: <input type = "text" name = "input" value = ""/></br></br>\
-                                                    Pizza Shop Name: <input type = "text" name = "input" value = ""/></br></br>\
-                                                </form>\
-                                                <button type = "button" onclick="startOrder()" class= "btn btn-default" role="button">Submit\
-                                            </div>\
-                                        </div>\
-                                        </div>\
                                     </div>'
                                             /*<div class = "modal-footer">\
                                                 <button type = "button" class="btn btn-default" data-dismiss="modal">Submit</button>\
