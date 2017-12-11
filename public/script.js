@@ -134,7 +134,7 @@ function addRequests()
         scaledSize: new google.maps.Size(50, 50)
     };
     console.log("in addRequests");
-
+    console.log(orders);
     for (var order in orders) {
         console.log(order);
         marker = new google.maps.Marker({
