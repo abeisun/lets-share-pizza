@@ -58,7 +58,6 @@ app.get('/allOrders.json', function(req, res) {
                 error: err
             });
         }
-        res.send(orders);
         return res.json(orders);
     });
 });
