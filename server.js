@@ -3,7 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
-const http = require('https').Server(app);
+const http = require('http').Server(app);
 
 app.use(express.static(path.join(__dirname, '/public')));   //serve css and javascript along side html pages
 app.use(bodyParser.json());
@@ -63,20 +63,11 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
-    orderModel.findOneAndUpdate(
-        { '_id': req.body.objID, 
-          'numSlices': { $lse: (8 - req.body.numSlices) }
-        },
+    orderModel.findByIdAndUpdate(req.body.objID, 
         { $inc: { 'numSlices': req.body.numSlices },
           $push: { 'contactInfo': req.body.contact } },
         { 'new': true }, 
         function (err, updatedOrder) {
-            if (!updatedOrder) {
-                console.log("Invalid user input!");
-                return res.status(400).json({
-                    message: 'error with user input'
-                });
-            }
             if (err) {
                 console.log(err);
                 return res.status(500).json({
