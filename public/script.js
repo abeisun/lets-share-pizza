@@ -174,8 +174,8 @@ function addRequests()
 function addToOrder() 
 {
     var form = document.getElementById("addtoorder_form");
-    var numSlices = form.element[1].value;
-    var contact = { 'name': form.element[0].value, 'phoneNumber': form.elements[2].value };
+    var numSlices = form.elements[1].value;
+    var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[2].value };
     var url = "https://lets-share-pizza.herokuapp.com/addToOrder";
     $.post(url, { 'objID': orderobjid, 'numSlices': numSlices, 'contact': contact }, function () {  
         window.location.replace("add_success.html");
