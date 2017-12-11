@@ -153,7 +153,7 @@ function addRequests()
                 content: "<h2>Add to this order<h2>" +
                 "<p>Number of slices: " + order.numSlices +"</p>" +
                 "<p>Pizza Shop: " + order.pizzaShopName + "</p>" +
-                "<p>Toppings: " + order.toppings + "</p>";
+                "<p>Toppings: " + order.toppings + "</p>"
             });
             infowindow.open(map, this);
         });
