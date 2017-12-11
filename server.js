@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
 
-app.use('/public', express.static(__dirname + "/public"));   //serve css and javascript along side html pages
+app.use('/public', express.static(path.join(__dirname, '/public')));   //serve css and javascript along side html pages
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
