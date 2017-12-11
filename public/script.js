@@ -158,10 +158,11 @@ function getCurrentRequests()
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.onreadystatechange = function() {//Call a function when the state changes.
-    if(request.readyState == 4 && request.status == 200) {
-        parseData();
-    }
-    request.send();
+        console.log(request.readyState + "and" + request.status);
+        if(request.readyState == 4 && request.status == 200) {
+            parseData();
+        }
+        request.send();
     }
 }
 
