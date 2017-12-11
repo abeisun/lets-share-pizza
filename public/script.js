@@ -1,16 +1,18 @@
-var pizzashop_name = "pizzaShop";
+//var pizzashop_name = "pizzaShop";
 var curr_lat;
 var curr_lng;
-var self = this;
-function loadMap() {
+var map_lat_lng;
+var map;
 
+function loadMap() {
     /* Fetch the user location */
-    navigator.geolocation.getCurrentPosition(function (position) { 
+    navigator.geolocation.getCurrentPosition(function (position) { //NOT CLOSED HERE
         curr_lat = position.coords.latitude;
         curr_lng = position.coords.longitude;
-        var map_lat_lng = new google.maps.LatLng(curr_lat, curr_lng);
+        map_lat_lng = new google.maps.LatLng(curr_lat, curr_lng);
+
         /* Instantiate and initialize the map at the current location */
-        map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), { 
             zoom: 15,
             center: {lat: curr_lat, lng: curr_lng},
             mapTypeId: 'terrain'
@@ -20,7 +22,7 @@ function loadMap() {
         var user = new google.maps.Marker({
                 position: map_lat_lng,
                 zIndex: 100
-            });
+        });
 
         /* Add a listener to open a dialogue linking to Pizza Form */
         user.addListener("click", function() {
@@ -40,31 +42,34 @@ function loadMap() {
                             <input type="submit" value="Submit"></button>\
                         </form>\
                     </div>'
-
                 });
                 infowindow.open(map, user);
         });
         user.setMap(map);
+        getRestaurants();
+    });
+}
 
+function getRestaurants() {
         /* Search within one mile */
         var restaurant_req = {
             location: map_lat_lng,
             radius: 1600,
             query: 'pizza delivery'
-
         };
 
         /* Retrieves all nearby pizza shops */
         var nearby = new google.maps.places.PlacesService(map);
         var infowindow;
         var results_cache;
-        nearby.textSearch(restaurant_req, function(results, status) {
-            
+
+        nearby.textSearch(restaurant_req, function(results, status) { //NOT CLOSED
+        
             /* Place on the map */
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     var pizza_loc = results[i].geometry.location;
-
+    
                     /* Only place locations within one mile */
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
                     if (distance < 1600) {
@@ -78,18 +83,13 @@ function loadMap() {
                         /* Place it on the map */
                         pizza_mrk.setMap(map);
 
-//                        pizzashop_name = results[i].name;
-
                         /* Add a listener to open the infowindow */
                         pizza_mrk.addListener("click", function() {
                             
                             infowindow = new google.maps.InfoWindow({
-                                content: //this.title + 
-                                 this.pizza_shop +
-
-                                /* modal */
-                                '<div class="req_body">\
-                                    <button class="buttons" type="button" data-toggle="modal" data-target="#initReqButton">Create Pizza Request</button>\
+                                content: this.pizza_shop +
+                                    '<div class="req_body">\
+                                        <button id = "modal-btn" type="button" data-toggle="modal" data-target="#initReqButton">Create Pizza Request</button>\
                                         <div class="modal fade right" id="initReqButton" role="dialog">\
                                         <div class="modal-content">\
                                             <span class="close">&times;</span>\
@@ -108,26 +108,34 @@ function loadMap() {
                                             </div>\
                                         </div>\
                                         </div>\
-                                </div>'
+                                    </div>'
                                             /*<div class = "modal-footer">\
                                                 <button type = "button" class="btn btn-default" data-dismiss="modal">Submit</button>\
                                             </div>\*/
                                         //</div>'
-                            });
+                                });
+                          /*  var modal = document.getElementById('req_body');
+                            //var span = document.getElementById("close")[0];
+                            var btn = document.getElementById("modal-btn");
+                            btn.onclick = function() {
+                                modal.style.display = "block";
+                            }
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
+                            */
                             infowindow.open(map, this);
                         });
                     }
                 }
-            }
+            } 
         });
-    });
-    getCurrentRequests();
+   getCurrentRequests();
 }
 
 function startOrder()
 {
     var form = document.getElementById("neworder_form");
-    //var name = form.elements[0].value;
     var numSlices = form.elements[1].value;
     var toppings = form.elements[2].value;
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[3].value };
@@ -147,7 +155,9 @@ function getCurrentRequests()
         parseData();
     }
     request.send();
+    }
 }
+
 function parseData()
 {
     orders = JSON.parse(request.responseText);
@@ -162,7 +172,7 @@ function addRequests()
     };
     console.log("in addRequests");
 
-    for (var location in orders){
+    for (var location in orders) {
         console.log(location);
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(location.coordinates[0], location.coordinates[1]),
@@ -173,20 +183,23 @@ function addRequests()
 
         google.maps.event.addListener(marker, 'click', function (){
             distance_from = google.maps.geometry.spherical.computeDistanceBetween(me, this.position)/1609.344;
-            contentString = '<p class="login">'+this.toppings+'<p/><p>is <span class="distance"> ' + distance_from.toString() + '</span> miles away<p/>\
-            <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
-              <div class="modal-content">\
-                <span class="close">&times;</span>\
-                <p>Some text in the Modal..</p>\
-              </div>\
-            </div>';
+            contentString: 
+                '<p class="login">'+ this.toppings +'<p/><p>is <span class="distance"> ' + distance_from.toString() + '</span> miles away<p/>\
+                <button id="myBtn">Add to request</button><div id="myModal" class="modal">\
+                  <div class="modal-content">\
+                    <span class="close">&times;</span>\
+                    <p>Some text in the Modal..</p>\
+                  </div>\
+                </div>'
+            });
+
             var modal = document.getElementById('myModal');
 
             // Get the button that opens the modal
             var btn = document.getElementById("myBtn");
 
             // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
+            var span = document.getElementById("close")[0]; //??????
 
             // When the user clicks the button, open the modal 
             btn.onclick = function() {
@@ -208,7 +221,6 @@ function addRequests()
                 content: contentString
             });
             infowindow.open(map, this);
-        });
-    }
+        }
 }
 
