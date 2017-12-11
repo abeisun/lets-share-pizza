@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
 
-app.use(express.static(__dirname + "/public"));   //serve css and javascript along side html pages
+app.use('/public', express.static(__dirname + "/public"));   //serve css and javascript along side html pages
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -58,7 +58,7 @@ app.get('/allOrders.json', function(req, res) {
                 error: err
             });
         }
-        res.send(orders);
+      //  res.send(orders);
         return res.json(orders);
     });
 });
