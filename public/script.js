@@ -145,16 +145,20 @@ function addRequests()
         var currNumSlices = order.numSlices;
         var currPizzaShopName = order.pizzaShopName;
         var currToppings = order.toppings;
+        var currLat = order.coordinates[0];
+        var currLng = order.coordinates[1];
 
         var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
+            position: new google.maps.LatLng(currLat, currLng),
             map:map,
             icon: image,
         });
 
         marker.addListener("mouseover", function() {
             infowindow = new google.maps.InfoWindow({
-                content: "<h2>Add to this order<h2>" +
+                content: 
+                "<h1>This is order # " + i + "<h1>" +
+                "<h2>Add to this order<h2>" +
                 "<p>Number of slices: " + currNumSlices +"</p>" +
                 "<p>Pizza Shop: " + currPizzaShopName + "</p>" +
                 "<p>Toppings: " + currToppings + "</p>"
