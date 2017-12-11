@@ -76,7 +76,7 @@ app.post('/addToOrder', function(req, res) {
                 });
             }
             textContact(updatedOrder);
-            orderModel.remove({'numSlices': 8}, function(err) {
+            orderModel.remove({'numSlices': { $gte : 8 } }, function(err) {
                 if (err) {
                     console.log(err);
                 }
