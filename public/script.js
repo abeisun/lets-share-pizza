@@ -146,7 +146,7 @@ function addRequests()
         var currPizzaShopName = order.pizzaShopName;
         var currToppings = order.toppings;
 
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
             map:map,
             icon: image,
