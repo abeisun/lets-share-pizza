@@ -181,4 +181,5 @@ function addToOrder()
         window.location.replace("add_success.html");
     });
 }
+google.maps.event.addDomListener(window, 'load', getLocation);
 
