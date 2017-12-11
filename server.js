@@ -65,7 +65,7 @@ app.get('/allOrders.json', function(req, res) {
 app.post('/addToOrder', function(req, res) {
     orderModel.findOneAndUpdate(
         { '_id': req.body.objID, 
-          'numSlices': { $lse: (8 - req.body.numSlices) }
+          'numSlices': { $lse: parseFloat(8 - req.body.numSlices) }
         },
         { $inc: { 'numSlices': req.body.numSlices },
           $push: { 'contactInfo': req.body.contact } },
