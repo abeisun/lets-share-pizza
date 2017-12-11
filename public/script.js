@@ -164,6 +164,7 @@ function getCurrentRequests()
         parseData();
     }
     request.onreadystatechange = function() {//Call a function when the state changes.
+        console.log("state change");
         request.send();
     }
 }
