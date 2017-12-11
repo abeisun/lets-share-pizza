@@ -163,7 +163,7 @@ function addRequests()
 
         marker.addListener("click", function() {
             orderobjid = order._id;
-            $("#ao-pizza-shop-name").text(this.pizza_shop);
+            $("#ao-pizza-shop-name").text(order.pizzaShopName);
             $("#ao-slices-so-far").text(order.numSlices);
             $("#ao-toppings").text(order.toppings);
             $("#addToOrder").modal('show');
