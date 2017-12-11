@@ -89,7 +89,7 @@ function getRestaurants() {
             }
         } 
     });
-    // getCurrentRequests();
+    getCurrentRequests();
 }
 
 function startOrder()
@@ -103,22 +103,19 @@ function startOrder()
     $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] });
 }
 
-function getcurrentrequests()
+function getCurrentRequests()
 {
     console.log("getting current requests");
     request = new XMLHttpRequest();
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    console.log("before onreadystatechange");
-    console.log(request.readyState + "and" + request.status);
-    console.log("hiiiiii");
-    if(request.readyState == 4 && request.status == 200) {
-        console.log("testing");
-        parseData();
-    }
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.send();
+  //  console.log(request.readyState + "and" + request.status);
     request.onreadystatechange = function() {//Call a function when the state changes.
-        console.log("state change");
-        request.send();
+        if(request.readyState == 4 && request.status == 200) {
+            console.log(request.readyState + "and" + request.status);
+            parseData();
+       }
     }
 }
 
@@ -126,6 +123,7 @@ function parseData()
 {
     console.log("parsing data");
     orders = JSON.parse(request.responseText);
+    console.log(orders);
     addRequests();
 }
 
@@ -136,11 +134,11 @@ function addRequests()
         scaledSize: new google.maps.Size(50, 50)
     };
     console.log("in addRequests");
-
-    for (var location in orders) {
-        console.log(location);
+    console.log(orders);
+    for (var order in orders) {
+        console.log(order);
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(location.coordinates[0], location.coordinates[1]),
+            position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
             map:map,
             icon: image,
         });
