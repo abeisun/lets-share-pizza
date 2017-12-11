@@ -149,3 +149,5 @@ function addRequests()
     // });
     // infowindow.open(map, this);
 }
+
+ google.maps.event.addDomListener(window, 'load', getLocation);
