@@ -103,7 +103,7 @@ function startOrder()
     $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] });
 }
 
-function getcurrentrequests()
+function getCurrentRequests()
 {
     console.log("getting current requests");
     request = new XMLHttpRequest();
