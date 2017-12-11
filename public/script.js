@@ -162,8 +162,7 @@ function addRequests()
         marker.addListener("mouseover", function() {
             infowindow = new google.maps.InfoWindow({
                 content: 
-                "<h1>This is order # " + i + "<h1>" +
-                "<h2>Add to this order<h2>" +
+                "<h3>Add to this order<h3>" +
                 "<p>Number of slices: " + this.currNumSlices +"</p>" +
                 "<p>Pizza Shop: " + this.currPizzaShopName + "</p>" +
                 "<p>Toppings: " + this.currToppings + "</p>"
