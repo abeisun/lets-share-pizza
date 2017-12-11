@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
 
-app.use(express.static(__dirname + "/public"));   //serve css and javascript along side html pages
+app.use(express.static(path.join(__dirname, '/public')));   //serve css and javascript along side html pages
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -58,7 +58,6 @@ app.get('/allOrders.json', function(req, res) {
                 error: err
             });
         }
-        res.send(orders);
         return res.json(orders);
     });
 });
@@ -77,7 +76,7 @@ app.post('/addToOrder', function(req, res) {
                 });
             }
             textContact(updatedOrder);
-            orderModel.remove({'numSlices': 8}, function(err) {
+            orderModel.remove({'numSlices': { $gte : 8 } }, function(err) {
                 if (err) {
                     console.log(err);
                 }
