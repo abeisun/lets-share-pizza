@@ -89,7 +89,7 @@ function getRestaurants() {
             }
         } 
     });
-    // getCurrentRequests();
+    getCurrentRequests();
 }
 
 function startOrder()
