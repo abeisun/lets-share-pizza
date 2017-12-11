@@ -154,6 +154,8 @@ function addRequests()
             icon: image,
         });
 
+        marker.setMap(map);
+
         marker.addListener("mouseover", function() {
             infowindow = new google.maps.InfoWindow({
                 content: 
