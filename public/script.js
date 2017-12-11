@@ -144,10 +144,33 @@ function addRequests()
             map:map,
             icon: image,
         });
-    }
 
-    // infowindow = new google.maps.InfoWindow({
-    //     content: contentString
-    // });
-    // infowindow.open(map, this);
+        var contentString = "<h2>Add to this order<h2>" +
+            "<p>Number of slices: " + order.numSlices +"</p>" +
+            "<p>Pizza Shop: " + order.pizzaShopName + "</p>" +
+            "<p>Toppings: " + order.toppings + "</p>";
+
+        marker.addListener("mouseover", function() {
+            infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            infowindow.open(map, this);
+        });
+
+        marker.addListener('mouseout', function() {        
+           infowindow.close();
+        });
+
+        marker.addListener("click", function() {
+            $("#ao-pizza-shop-name").text(this.pizza_shop);
+            $("#ao-slices-so-far").text(order.numSlices);
+            $("#ao-toppings").text(order.toppings);
+            $("#addToOrder").modal('show');
+        });
+    }
+}
+
+function addToOrder() 
+{
+    
 }
