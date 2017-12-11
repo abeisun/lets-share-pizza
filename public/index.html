@@ -12,8 +12,25 @@
 <body>
 
     <div id="map"></div>
+    <div class="modal fade right" id="initReqButton" role="dialog">
+    <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-header">
+    <h4 class="modal-title">Pizza Request Form</h4>
+    </div>
+    <div class="modal-body">
+    <form id = "neworder_form">
+    Name: <input type = "text" name = "input" value = ""/></br></br>
+    Number of Slices: <input type = "text" name = "input" value = ""/></br></br>
+    Toppings: <input type = "text" name = "input" value = ""/></br></br>
+    Phone Number: <input type = "text" name = "input" value = ""/></br></br>
+    Pizza Shop Name: <input type = "text" name = "input" value = ""/></br></br>
+    </form>
+    <button type = "button" onclick="startOrder()" class= "btn btn-default" role="button">Submit
+    </div>
+    </div>
+    </div>
 
-    
     <script type="text/javascript" src="script.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvv09pm5FSohJnXwnxEpZ300IVlCRHYRE&libraries=geometry,places&callback=loadMap"></script>
 

@@ -34,6 +34,7 @@ function loadMap() {
         });
         user.setMap(map);
         getRestaurants();
+        getCurrentRequests();
     });
 }
 
@@ -117,7 +118,6 @@ function getRestaurants() {
                 }
             } 
         });
-   getCurrentRequests();
 }
 
 function initModal()

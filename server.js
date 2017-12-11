@@ -65,7 +65,8 @@ app.get('/allOrders.json', function(req, res) {
 app.post('/addToOrder', function(req, res) {
     orderModel.findByIdAndUpdate(req.body.objID, 
         { $inc: { 'numSlices': req.body.numSlices },
-          $push: { 'contactInfo': req.body.contact } }, 
+          $push: { 'contactInfo': req.body.contact } },
+        { 'new': true }, 
         function (err, updatedOrder) {
             if (err) {
                 console.log(err);
@@ -88,6 +89,7 @@ const twilioClient = require('./private/twilioClient.js');
 
 function textContact(order) {
     var textBody = "";
+    console.log("order: " + order);
     if (order.numSlices == 8) {
         textBody += "Congratulations on finishing the pizza order!\n";
     }
