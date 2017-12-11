@@ -102,11 +102,10 @@ function textContact(order) {
 
     //send SMS to each contact
     for (var i = 0; i < numContacts; ++i) {
-        client.messages.create({
+        twilioClient.messages.create({
             to: contacts[i].phoneNumber,
             from: '+16172092030',
             body: textBody
         }).then((message) => console.log(message.sid));
     }
 }
-    
