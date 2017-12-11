@@ -5,6 +5,7 @@ var map_lat_lng;
 var map;
 
 function loadMap() {
+    console.log("hello");
     /* Fetch the user location */
     navigator.geolocation.getCurrentPosition(function (position) { //NOT CLOSED HERE
         curr_lat = position.coords.latitude;
