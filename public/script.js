@@ -139,8 +139,11 @@ function addRequests()
     console.log("in addRequests");
     var numOrders = orders.length;
     for (var i = 0; i < numOrders; ++i) {
-
         var order = orders[i];
+        console.log('order: ' + order);
+        var currNumSlices = order.numSlices;
+        var currPizzaShopName = order.pizzaShopName;
+        var currToppings = order.toppings;
 
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
@@ -151,9 +154,9 @@ function addRequests()
         marker.addListener("mouseover", function() {
             infowindow = new google.maps.InfoWindow({
                 content: "<h2>Add to this order<h2>" +
-                "<p>Number of slices: " + order.numSlices +"</p>" +
-                "<p>Pizza Shop: " + order.pizzaShopName + "</p>" +
-                "<p>Toppings: " + order.toppings + "</p>"
+                "<p>Number of slices: " + currNumSlices +"</p>" +
+                "<p>Pizza Shop: " + currPizzaShopName + "</p>" +
+                "<p>Toppings: " + currToppings + "</p>"
             });
             infowindow.open(map, this);
         });
@@ -164,9 +167,9 @@ function addRequests()
 
         marker.addListener("click", function() {
             orderobjid = order._id;
-            $("#ao-pizza-shop-name").text(order.pizzaShopName);
-            $("#ao-slices-so-far").text(order.numSlices);
-            $("#ao-toppings").text(order.toppings);
+            $("#ao-pizza-shop-name").text(currPizzaShopName);
+            $("#ao-slices-so-far").text(currNumSlices);
+            $("#ao-toppings").text(currToppings);
             $("#addToOrder").modal('show');
         });
     }
