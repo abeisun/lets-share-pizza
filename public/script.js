@@ -167,6 +167,7 @@ function getCurrentRequests()
 
 function parseData()
 {
+    console.log("parsing data");
     orders = JSON.parse(request.responseText);
     addRequests();
 }
