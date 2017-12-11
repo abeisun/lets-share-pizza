@@ -137,8 +137,11 @@ function addRequests()
         scaledSize: new google.maps.Size(50, 50)
     };
     console.log("in addRequests");
-    for (var i in orders) {
+    var numOrders = orders.length;
+    for (var i = 0; i < numOrders; ++i) {
+
         var order = orders[i];
+
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
             map:map,
