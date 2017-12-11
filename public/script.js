@@ -91,19 +91,18 @@ function getRestaurants() {
                                                     Phone Number: <input type = "text" name = "input" value = ""/></br></br>\
                                                     Pizza Shop Name: <input type = "text" name = "input" value = ""/></br></br>\
                                                 </form>\
-                                                <button type = "button" onclick="startOrder()" class= "btn btn-default" role="button">Submit\
+                                                <a onclick="startOrder()" href="firstorder_success.html" class="button" role="button">Submit\
                                             </div>\
                                         </div>\
                                         </div>\
                                     </div>'
-                                            /*<div class = "modal-footer">\
-                                                <button type = "button" class="btn btn-default" data-dismiss="modal">Submit</button>\
-                                            </div>\*/
-                                        //</div>'
                             });
                             infowindow.open(map, this);
                         });
                         /*
+                        <button type = "button" onclick="startOrder()" class= "btn btn-default" role="button">Submit\
+                                                    <a href = "firstorder_success.html">\
+                        </button>\
                         var modal = document.getElementById('req_body');
                         var span = document.getElementById("close");
                         var btn = document.getElementById("modal-btn");
@@ -121,6 +120,21 @@ function getRestaurants() {
    getCurrentRequests();
 }
 
+function initModal()
+{
+        var modal = document.getElementById('req_body');
+        var span = document.getElementById("close");
+        var btn = document.getElementById("modal-btn");
+            
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        } 
+
+}
+
 function startOrder()
 {
     var form = document.getElementById("neworder_form");
@@ -130,6 +144,9 @@ function startOrder()
     var pizzaShopName = form.elements[4].value; //self.pizzashop_name //this.title;
     url = "https://lets-share-pizza.herokuapp.com/startOrder";
     $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] });
+
+    for (var i=0; i<5;i++)
+        form.elements[i].value = '';
 }
 
 

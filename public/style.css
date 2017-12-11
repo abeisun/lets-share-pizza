@@ -3,7 +3,20 @@
 }
 
 html, body {
+
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.button {
+	height: 150px;
+	width: 200px;
+	background-color: transparent;
+	margin-color: grey;
+	margin-width: 2%;
+	margin-left: 5%;
+	color: black;
+	outline: 1px solid grey;
+	outline-offset: 10px;
 }
