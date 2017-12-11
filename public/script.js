@@ -144,8 +144,8 @@ function addRequests()
         });
     }
 
-    infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-    infowindow.open(map, this);
+    // infowindow = new google.maps.InfoWindow({
+    //     content: contentString
+    // });
+    // infowindow.open(map, this);
 }
