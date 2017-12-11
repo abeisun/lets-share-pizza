@@ -98,7 +98,7 @@ function startOrder()
     var numSlices = form.elements[1].value;
     var toppings = form.elements[2].value;
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[3].value };
-    var pizzaShopName = document.getElementById("no-pizza-shop-name");
+    var pizzaShopName = $("#no-pizza-shop-name").text();
     url = "https://lets-share-pizza.herokuapp.com/startOrder";
     $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] });
 }
