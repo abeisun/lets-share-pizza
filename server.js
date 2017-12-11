@@ -63,11 +63,20 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
-    orderModel.findByIdAndUpdate(req.body.objID, 
+    orderModel.findOneAndUpdate(
+        { '_id': req.body.objID, 
+          'numSlices': { $lse: (8 - req.body.numSlices) }
+        },
         { $inc: { 'numSlices': req.body.numSlices },
           $push: { 'contactInfo': req.body.contact } },
         { 'new': true }, 
         function (err, updatedOrder) {
+            if (!updatedOrder) {
+                console.log("Invalid user input!");
+                return res.status(400).json({
+                    message: 'error with user input'
+                });
+            }
             if (err) {
                 console.log(err);
                 return res.status(500).json({
