@@ -88,6 +88,7 @@ const twilioClient = require('./private/twilioClient.js');
 
 function textContact(order) {
     var textBody = "";
+    console.log("order: " + order);
     if (order.numSlices == 8) {
         textBody += "Congratulations on finishing the pizza order!\n";
     }
