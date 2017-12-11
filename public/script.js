@@ -109,6 +109,7 @@ function getCurrentRequests()
     request = new XMLHttpRequest();
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.send();
     console.log("before onreadystatechange");
     console.log(request.readyState + "and" + request.status);
     console.log("hiiiiii");
@@ -118,7 +119,6 @@ function getCurrentRequests()
     }
     request.onreadystatechange = function() {//Call a function when the state changes.
         console.log("state change");
-        request.send();
     }
 }
 
