@@ -32,7 +32,7 @@ function loadMap() {
         user.addListener('mouseout', function() {        
            infowindow.close();
         });
-
+      //  google.maps.event.addDomListener(window, 'load', getLocation);
         user.setMap(map);
         getRestaurants();
     });
@@ -184,4 +184,3 @@ function addToOrder()
         window.location.replace("add_success.html");
     });
 }
-
