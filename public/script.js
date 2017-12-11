@@ -123,6 +123,7 @@ function parseData()
 {
     console.log("parsing data");
     orders = JSON.parse(request.responseText);
+    console.log(orders);
     addRequests();
 }
 
@@ -134,10 +135,10 @@ function addRequests()
     };
     console.log("in addRequests");
 
-    for (var location in orders) {
-        console.log(location);
+    for (var order in orders) {
+        console.log(order);
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(location.coordinates[0], location.coordinates[1]),
+            position: new google.maps.LatLng(order.coordinates[0], order.coordinates[1]),
             map:map,
             icon: image,
         });
