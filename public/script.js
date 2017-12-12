@@ -53,6 +53,8 @@ function getRestaurants() {
     
     nearby.textSearch(restaurant_req, function(results, status) {
         //var rest_place = google.maps.places.PlacesService.getDetails(restaurant_req);
+        console.log("All the pizza shops near by: ");
+        console.log(results);
 
         /* Place on the map */
         if (status == google.maps.places.PlacesServiceStatus.OK) {            
@@ -62,7 +64,6 @@ function getRestaurants() {
                 
                 var pizza_info = results[i].opening_hours;
                 if (pizza_info.open_now == true) {
-                    console.log("open now");
                     
                     var pizza_hours = results[i].periods;
                     /* Only place locations within one mile */
@@ -73,10 +74,12 @@ function getRestaurants() {
                             url: '/purple_pizza.png',
                             scaledSize: new google.maps.Size(50, 50)
                         };
+
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
                             position: results[i].geometry.location,
                             pizza_shop: results[i].name,
+                            distanceToYou: (distance / 1600),
                             icon: shop_image
                         });
 
@@ -86,7 +89,9 @@ function getRestaurants() {
                         /* Add a listener to mouseover the infowindow */
                         pizza_mrk.addListener("mouseover", function() {
                             infowindow = new google.maps.InfoWindow({
-                                content: "<h2>" + this.pizza_shop + "<h2>"
+                                content: 
+                                "<h2>" + this.pizza_shop + "<h2>" +
+                                "<p>Distance to you: " + this.distanceToYou + "</p>"
                             });
                             infowindow.open(map, this);
                         });
