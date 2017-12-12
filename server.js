@@ -36,6 +36,10 @@ app.post('/startOrder', function(req, res) {
     console.log("numslices: " + numSlices);
     console.log("typeof numslices: " + typeof(numSlices));
     if (!(Number.isInteger(nSlices))) {
+        return res.status(400).json({
+            message: "Fraction number of slices not allowed"
+        });
+    }
     if (nSlices >= 8) {
         return res.status(400).json({
             message: "Too many slices of pizza"
