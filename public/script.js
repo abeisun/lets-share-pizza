@@ -52,41 +52,49 @@ function getRestaurants() {
     var results_cache;
     
     nearby.textSearch(restaurant_req, function(results, status) {
-    
+        //var rest_place = google.maps.places.PlacesService.getDetails(restaurant_req);
+
         /* Place on the map */
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {            
+
             for (var i = 0; i < results.length; i++) {
                 var pizza_loc = results[i].geometry.location;
+                
+                var pizza_info = results[i].opening_hours;
+                if (pizza_info.open_now == true) {
+                    console.log("open now");
+                    
+                    var pizza_hours = results[i].periods;
+                    /* Only place locations within one mile */
+                    var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
+                    if (distance < 1600) {
 
-                /* Only place locations within one mile */
-                var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
-                if (distance < 1600) {
-
-                    /* Create the new marker */
-                    var pizza_mrk = new google.maps.Marker({
-                        position: results[i].geometry.location,
-                        pizza_shop: results[i].name
-                    });
-
-                    /* Place it on the map */
-                    pizza_mrk.setMap(map);
-
-                    /* Add a listener to mouseover the infowindow */
-                    pizza_mrk.addListener("mouseover", function() {
-                        infowindow = new google.maps.InfoWindow({
-                            content: "<h2>" + this.pizza_shop + "<h2>"
+                        /* Create the new marker */
+                        var pizza_mrk = new google.maps.Marker({
+                            position: results[i].geometry.location,
+                            pizza_shop: results[i].name
                         });
-                        infowindow.open(map, this);
-                    });
 
-                    pizza_mrk.addListener('mouseout', function() {        
-                       infowindow.close();
-                    });
+                        /* Place it on the map */
+                        pizza_mrk.setMap(map);
 
-                    pizza_mrk.addListener("click", function() {
-                        $("#no-pizza-shop-name").text(this.pizza_shop);
-                        $("#newOrderModal").modal('show');
-                    });
+                        /* Add a listener to mouseover the infowindow */
+                        pizza_mrk.addListener("mouseover", function() {
+                            infowindow = new google.maps.InfoWindow({
+                                content: "<h2>" + this.pizza_shop + "<h2>"
+                            });
+                            infowindow.open(map, this);
+                        });
+
+                        pizza_mrk.addListener('mouseout', function() {        
+                           infowindow.close();
+                        });
+
+                        pizza_mrk.addListener("click", function() {
+                            $("#no-pizza-shop-name").text(this.pizza_shop);
+                            $("#newOrderModal").modal('show');
+                        });
+                    }
                 }
             }
         } 
