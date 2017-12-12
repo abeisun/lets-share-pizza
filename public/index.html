@@ -50,14 +50,15 @@ function aboutText()
     <form id = "neworder_form">
     Pizza Shop Name: <div id="no-pizza-shop-name">default</div><br></br>
     Name: <input type = "text" name = "input" value = ""/></br></br>
-    Number of Slices (less than or equal to 8): <input type = "text" name = "input" value = ""/></br></br>
+    Number of Slices (less than or equal to 7): <input type = "number" name = "input" value = ""/></br></br>
     Toppings: <input type = "text" name = "input" value = ""/></br></br>
-    Phone Number: <input type = "text" name = "input" value = ""/></br></br>
+    Phone Number: <input type = "tel" name = "input" value = ""/></br></br>
     </form>
     <button type = "button" onclick="startOrder()" class= "btn btn-default" role="button">Submit
 
       </div>
       <div class="modal-footer">
+          <div class="ajax-error-message" id="no-error-message"></div>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -81,8 +82,8 @@ function aboutText()
     Slices So Far: <div id="ao-slices-so-far">default</div><br></br>
     Toppings: <div id="ao-toppings">default</div><br></br>
     Name: <input type = "text" name = "input" value = ""/></br></br>
-    Number of Slices: <input type = "text" name = "input" value = ""/></br></br>
-    Phone Number: <input type = "text" name = "input" value = ""/></br></br>
+    Number of Slices: <input type = "number" name = "input" value = ""/></br></br>
+    Phone Number: <input type = "tel" name = "input" value = ""/></br></br>
     </form>
     <button type = "button" onclick="addToOrder()" class= "btn btn-default" role="button">Submit
 

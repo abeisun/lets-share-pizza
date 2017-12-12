@@ -115,8 +115,16 @@ function startOrder()
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[3].value };
     var pizzaShopName = $("#no-pizza-shop-name").text();
     var url = "https://lets-share-pizza.herokuapp.com/startOrder";
-    $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] }, function () {  
-        window.location.replace("firstorder_success.html");
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] },
+        success: function () {
+            window.location.replace("firstorder_success.html");
+        },
+        error: function(jqXHR, txtStatus, errorThrown) {
+            $("#no-error-message").text(errorThrown + ": " + jqXHR.responseJSON.message); 
+        }
     });
 }
 

@@ -30,6 +30,11 @@ app.get('/', function(req, res) {
 });
 
 app.post('/startOrder', function(req, res) {
+    if (req.body.numSlices >= 8) {
+        return res.status(400).json({
+            message: "Too many slices of pizza"
+        });
+    }
     var order = new orderModel({
         numSlices: req.body.numSlices,
         pizzaShopName: req.body.pizzaShopName,
