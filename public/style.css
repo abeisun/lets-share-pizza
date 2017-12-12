@@ -23,3 +23,7 @@ html, body {
 .button:hover {
 	color: #388E8E;
 }
+
+.ajax-error-message {
+    color: #E90E0E
+}
