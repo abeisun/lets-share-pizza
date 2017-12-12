@@ -48,11 +48,11 @@ head{
   color: white;
 }
 
-/*.topnav a.active {
+.topnav a.active {
   background-color: #d5482c;
   color: white;
 }
-*/
+
 .ajax-error-message {
     color: #E90E0E;
 }
