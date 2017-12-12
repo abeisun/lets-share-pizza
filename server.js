@@ -24,9 +24,6 @@ mongoose.connect(mongoUri, {
 
 var orderModel = require('./models/orderModel.js');
 
-app.get('*', function(req, res) {  
-    res.redirect('https://' + req.headers.host + req.url);
-})
 
 app.get('/', function(req, res) {
 	res.sendFile('index.html', {root: path.join(__dirname, 'public')});
