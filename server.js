@@ -65,19 +65,25 @@ app.get('/allOrders.json', function(req, res) {
 app.post('/addToOrder', function(req, res) {
     orderModel.findOneAndUpdate(
         { '_id': req.body.objID, 
-          'numSlices': { $lse: parseFloat(8 - req.body.numSlices) }
+          'numSlices': { $lte: 8 - req.body.numSlices }
         },
         { $inc: { 'numSlices': req.body.numSlices },
           $push: { 'contactInfo': req.body.contact } },
         { 'new': true }, 
         function (err, updatedOrder) {
+            if (!updatedOrder) {
+                console.log("User Input Error!");
+                return res.status(400).json({
+                    message: 'error with user input'
+                });
+            }
             if (err) {
                 console.log(err);
                 return res.status(500).json({
                     message: 'error when updating order',
                     error: err
                 });
-            }
+            } 
             textContact(updatedOrder);
             orderModel.remove({'numSlices': { $gte : 8 } }, function(err) {
                 if (err) {

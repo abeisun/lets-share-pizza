@@ -190,7 +190,21 @@ function addToOrder()
     var numSlices = form.elements[1].value;
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[2].value };
     var url = "https://lets-share-pizza.herokuapp.com/addToOrder";
-    $.post(url, { 'objID': orderobjid, 'numSlices': numSlices, 'contact': contact }, function () {  
-        window.location.replace("add_success.html");
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { 'objID': orderobjid, 'numSlices': numSlices, 'contact': contact },
+        success: function () {  
+            window.location.replace("add_success.html");
+        },
+        error: function(jqXHR, txtStatus, errorThrown) {
+            console.log('jqXHR: ');
+            console.log(jqXHR);
+            console.log('txtStatus: ');
+            console.log(txtStatus);
+            console.log('errorThrown: ');
+            console.log(errorThrown);
+            $("#ao-error-message").text(errorThrown + ": " + jqXHR.responseJSON.message); 
+        }
     });
 }
