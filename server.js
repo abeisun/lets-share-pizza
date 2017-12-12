@@ -71,13 +71,19 @@ app.post('/addToOrder', function(req, res) {
           $push: { 'contactInfo': req.body.contact } },
         { 'new': true }, 
         function (err, updatedOrder) {
+            if (!updatedOrder) {
+                console.log("User Input Error!");
+                return res.status(400).json({
+                    message: 'error with user input'
+                });
+            }
             if (err) {
                 console.log(err);
                 return res.status(500).json({
                     message: 'error when updating order',
                     error: err
                 });
-            }
+            } 
             textContact(updatedOrder);
             orderModel.remove({'numSlices': { $gte : 8 } }, function(err) {
                 if (err) {
