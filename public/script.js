@@ -66,7 +66,7 @@ function getRestaurants() {
                     var pizza_hours = results[i].periods;
                     /* Only place locations within one mile */
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
-                    if (distance < 1600) {
+                    if (distance < 4800) {
                         /* Create new image for the orders */
                         var shop_image = {
                             url: '/purple_pizza.png',
