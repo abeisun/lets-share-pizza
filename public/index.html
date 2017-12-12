@@ -11,9 +11,9 @@
 <body>
 
 <div class="topnav">
-  <a class="active" onclick='homeText();'>Home</a>
-  <a class="contact" onclick='contactText();'>Contact</a>
-  <a class="about" onclick='aboutText();'>About</a>
+  <a id="home" onclick='homeText();'>Home</a>
+  <a id="contact" onclick='contactText();'>Contact</a>
+  <a id="about" onclick='aboutText();'>About</a>
 </div>
 <div style="padding-left:16px" id="about_text">
   <h4>Let's order a pizza!</h4>
@@ -31,18 +31,36 @@
                     <li>Click on them on the map, enter your info, contact that person</li>\
                     <li>Enjoy your pizza and be happy you didn't have to buy an entire pie!</li>\
             </ol>";
+            document.getElementById("about").style.backgroundColor = '#d5482c';
+            document.getElementById("about").style.color = 'white';
+            document.getElementById("home").style.backgroundColor = '#ff9333';
+            document.getElementById("contact").style.backgroundColor = '#ff9333';
+            document.getElementById("home").style.color = '#FFE682';
+            document.getElementById("contact").style.color = '#FFE682';
     };
 
     function homeText()
     {
         document.getElementById('about_text').innerHTML = "<h4>Let's order a pizza!</h4>\
         <p>Click on any open pizza place to begin an order.</p> ";
+        document.getElementById("home").style.backgroundColor = '#d5482c';
+        document.getElementById("home").style.color = 'white';
+        document.getElementById("about").style.backgroundColor = '#ff9333';
+        document.getElementById("contact").style.backgroundColor = '#ff9333';
+        document.getElementById("about").style.color = '#FFE682';
+        document.getElementById("contact").style.color = '#FFE682';
     };
 
     function contactText()
     {
          document.getElementById('about_text').innerHTML = "<h4>Found a fraudulent pizza request?</h4>\
          <p>Contact us at iwantapizzabutnotawholeone@gmail.com and we will investigate this report</p>";
+         document.getElementById("contact").style.backgroundColor = '#d5482c';
+         document.getElementById("contact").style.color = 'white';
+         document.getElementById("home").style.backgroundColor = '#ff9333';
+         document.getElementById("about").style.backgroundColor = '#ff9333';
+         document.getElementById("about").style.color = '#FFE682';
+         document.getElementById("home").style.color = '#FFE682';
     };
 
 </script>
