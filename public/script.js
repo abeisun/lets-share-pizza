@@ -97,8 +97,8 @@ function getRestaurants() {
                             infowindow = new google.maps.InfoWindow({
                                 content: 
                                 "<h2>" + this.pizza_shop + "<h2>" +
-                                "<p>Distance to you: " + this.distanceToYou + " miles</p>"
-                                "<p>Rating: " + this.rating + "</p>"
+                                "<p>Distance to you: " + this.distanceToYou + " miles</p>" +
+                                "<p>Rating: " + this.rating + "</p>" +
                                 "<p>Operation Hours: " + this.todayHours + " miles</p>"
                             });
                             infowindow.open(map, this);
