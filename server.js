@@ -33,8 +33,6 @@ const phoneNumExp = /^\d{10}$/;
 
 app.post('/startOrder', function(req, res) {
     var nSlices = +(req.body.numSlices);    //convert to number
-    console.log("numslices: " + nSlices);
-    console.log("typeof numslices: " + typeof(nSlices));
     if (!(Number.isInteger(nSlices))) {
         return res.status(400).json({
             message: "Fraction number of slices not allowed"
@@ -51,8 +49,6 @@ app.post('/startOrder', function(req, res) {
         });
     }
     var inputPhoneNum = req.body.contactInfo[0].phoneNumber;
-    console.log("inputPhoneNum: " + inputPhoneNum);
-    console.log(typeof(inputPhoneNum));
     if (!inputPhoneNum.match(phoneNumExp)) {
         return res.status(400).json({
             message: "Not a valid phone number"
@@ -149,7 +145,6 @@ const twilioClient = require('./private/twilioClient.js');
 
 function textContact(order) {
     var textBody = "";
-    console.log("order: " + order);
     if (order.numSlices == 8) {
         textBody += "Congratulations on finishing the pizza order!\n";
     }

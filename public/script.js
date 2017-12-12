@@ -52,8 +52,6 @@ function getRestaurants() {
     var results_cache;
     
     nearby.textSearch(restaurant_req, function(results, status) {
-        console.log("All the pizza shops near by: ");
-        console.log(results);
 
         /* Place on the map */
         if (status == google.maps.places.PlacesServiceStatus.OK) {            
@@ -138,15 +136,12 @@ function startOrder()
 
 function getCurrentRequests()
 {
-    console.log("getting current requests");
     request = new XMLHttpRequest();
     request.open("GET", "https://lets-share-pizza.herokuapp.com/allOrders.json", true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     request.send();
-  //  console.log(request.readyState + "and" + request.status);
     request.onreadystatechange = function() {//Call a function when the state changes.
         if(request.readyState == 4 && request.status == 200) {
-            console.log(request.readyState + "and" + request.status);
             parseData();
        }
     }
@@ -154,7 +149,6 @@ function getCurrentRequests()
 
 function parseData()
 {
-    console.log("parsing data");
     orders = JSON.parse(request.responseText);
     addRequests();
 }
@@ -165,12 +159,9 @@ function addRequests()
         url: "pizzaprototype.png",
         scaledSize: new google.maps.Size(50, 50)
     };
-    console.log("in addRequests");
     var numOrders = orders.length;
     for (var i = 0; i < numOrders; ++i) {
         var order = orders[i];
-        console.log('order: ');
-        console.log(order);
         var currNumSlices = order.numSlices;
         var currPizzaShopName = order.pizzaShopName;
         var currToppings = order.toppings;
@@ -227,12 +218,6 @@ function addToOrder()
             window.location.replace("add_success.html");
         },
         error: function(jqXHR, txtStatus, errorThrown) {
-            console.log('jqXHR: ');
-            console.log(jqXHR);
-            console.log('txtStatus: ');
-            console.log(txtStatus);
-            console.log('errorThrown: ');
-            console.log(errorThrown);
             $("#ao-error-message").text(errorThrown + ": " + jqXHR.responseJSON.message); 
         }
     });
