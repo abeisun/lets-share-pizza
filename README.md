@@ -19,6 +19,8 @@ Display the forms for submitting a new pizza request or adding on to a pizza req
 MongoDB to store all active orders and their state. (Server-side data persistence).
 Drop down list of all pizza shops (that do takeout) within a radius by using Google Locations API. This drop down list will be used to schoose from when submitting a new pizza request.
 
+**Note: to use the Google Maps API, the user must use HTTPS://
+
 ## What data will your prototype be using and collecting
 
 Our prototype will use geolocation data and will collect information about the person who posted the pizza-requests contact information. This contact information could be an email, a phone number, or a location (i.e. Halligan 118)
