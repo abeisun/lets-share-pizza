@@ -11,17 +11,31 @@
 <body>
 
 <div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
+  <a class="active" onclick='changeText();'>Home</a>
+  <a href="#contact" onclick='changeText();'>Contact</a>
+  <a href="#about" onclick='aboutText();'>About</a>
 </div>
-
-<div style="padding-left:16px" class="about_text">
+<div style="padding-left:16px" id="about_text">
   <h4>Let's order a pizza!</h4>
   <p>Click on any open pizza place to begin an order.</p>
 </div>
-    <div id="map"></div>
+<script>
+function aboutText()
+{
+    console.log('HELLO WORLD');
+    document.getElementById('about_text').innerHTML = " <h4>Have you ever wanted a slice of pizza, \
+        but not want to buy an entire pie? <br>Well, have no fear! I Want Pizza, but I Don't Want a Whole\
+        One is here!</h4>\
+        <h5>How to Use: </h5>\
+        <ol>\
+                <li>Browse the map for people with similar pizza interests near you</li>\
+                <li>Click on them on the map, enter your info, contact that person</li>\
+                <li>Enjoy your pizza and be happy you didn't have to buy an entire pie!</li>\
+        </ol>";
+    };
+</script>
 
+    <div id="map"></div>
     <!-- Modal for New Order -->
 <div id="newOrderModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
