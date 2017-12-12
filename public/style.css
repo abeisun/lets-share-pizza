@@ -20,10 +20,11 @@ html, body {
 	font-weight: 2px;
 	font-size: 20px;
 }
+
 .button:hover {
 	color: #388E8E;
 }
-<<<<<<< HEAD
+
 .topnav {
   overflow: hidden;
   background-color: #ff9333;
@@ -53,9 +54,7 @@ body,html{
     width:100%;
     background-color: black;
 }
-=======
 
 .ajax-error-message {
-    color: #E90E0E
+    color: #E90E0E;
 }
->>>>>>> 1094d991247c40075c5d7dd5cd12c6c6ea59a4a0
