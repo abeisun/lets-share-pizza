@@ -68,11 +68,16 @@ function getRestaurants() {
                     /* Only place locations within one mile */
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
                     if (distance < 1600) {
-
+                        /* Create new image for the orders */
+                        var shop_image = {
+                            url: '/purple_pizza.png',
+                            scaledSize: new google.maps.Size(50, 50)
+                        };
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
                             position: results[i].geometry.location,
-                            pizza_shop: results[i].name
+                            pizza_shop: results[i].name,
+                            icon: shop_image
                         });
 
                         /* Place it on the map */
