@@ -29,10 +29,20 @@ app.get('/', function(req, res) {
 	res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 });
 
+const phoneNumExp = /^\d{10}$/;
+
 app.post('/startOrder', function(req, res) {
     if (req.body.numSlices >= 8) {
         return res.status(400).json({
             message: "Too many slices of pizza"
+        });
+    }
+    var inputPhoneNum = req.body.contactInfo.phoneNumber;
+    console.log("inputPhoneNum: " + inputPhoneNum);
+    console.log(typeof(inputPhoneNum));
+    if (!inputPhoneNum.match(phoneNumExp)) {
+        return res.status(400).json({
+            message: "Not a valid phone number"
         });
     }
     var order = new orderModel({
@@ -69,6 +79,12 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
+    var inputPhoneNum = req.body.contact.phoneNumber;
+    if (!inputPhoneNum.match(phoneNumExp)) {
+        return res.status(400).json({
+            message: "Not a valid phone number"
+        });
+    }
     orderModel.findOneAndUpdate(
         { '_id': req.body.objID, 
           'numSlices': { $lte: 8 - req.body.numSlices }
@@ -80,7 +96,7 @@ app.post('/addToOrder', function(req, res) {
             if (!updatedOrder) {
                 console.log("User Input Error!");
                 return res.status(400).json({
-                    message: 'error with user input'
+                    message: 'Error with user input'
                 });
             }
             if (err) {
