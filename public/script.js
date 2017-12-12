@@ -77,7 +77,11 @@ function getRestaurants() {
                         var truncDist = (distance / 1600).toFixed(2);
                         var now = new Date();
                         var weekIndex = now.getDay() - 1;
-                        var todayHours = thisShop.opening_hours.weekday_text[weekIndex];
+                        console.log(thisShop.opening_hours);
+                        var weekHours = thisShop.opening_hours.weekday_text;
+                        console.log(weekHours);
+
+                        todayHours = null;
 
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
@@ -97,9 +101,9 @@ function getRestaurants() {
                             infowindow = new google.maps.InfoWindow({
                                 content: 
                                 "<h2>" + this.pizza_shop + "<h2>" +
-                                "<p>Distance to you: " + this.distanceToYou + " miles</p>"
-                                "<p>Rating: " + this.rating + "</p>"
-                                "<p>Operation Hours: " + this.todayHours + " miles</p>"
+                                "<p>Distance to you: " + this.distanceToYou + " miles</p>" +
+                                "<p>Rating: " + this.rating + "</p>" +
+                                "<p>Operation Hours: " + this.todayHours + "</p>"
                             });
                             infowindow.open(map, this);
                         });
