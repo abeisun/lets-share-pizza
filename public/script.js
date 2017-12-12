@@ -66,7 +66,7 @@ function getRestaurants() {
                     var pizza_hours = results[i].periods;
                     /* Only place locations within one mile */
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
-                    if (distance < 4800) {
+                    if (distance < 4800) {    // 3 miles
                         /* Create new image for the orders */
                         var shop_image = {
                             url: '/purple_pizza.png',
@@ -75,21 +75,13 @@ function getRestaurants() {
 
                         var thisShop = results[i];
                         var truncDist = (distance / 1600).toFixed(2);
-                        var now = new Date();
-                        var weekIndex = now.getDay() - 1;
-                        console.log(thisShop.opening_hours);
-                        var weekHours = thisShop.opening_hours.weekday_text;
-                        console.log(weekHours);
-
-                        todayHours = null;
 
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
                             position: thisShop.geometry.location,
                             pizza_shop: thisShop.name,
                             distanceToYou: truncDist,
-                            rating: thisShop.rating,
-                            operation_hours: todayHours,
+                            rating: thisShop.rating
                             icon: shop_image
                         });
 
@@ -102,8 +94,7 @@ function getRestaurants() {
                                 content: 
                                 "<h2>" + this.pizza_shop + "<h2>" +
                                 "<p>Distance to you: " + this.distanceToYou + " miles</p>" +
-                                "<p>Rating: " + this.rating + "</p>" +
-                                "<p>Operation Hours: " + this.todayHours + "</p>"
+                                "<p>Rating: " + this.rating + "</p>"
                             });
                             infowindow.open(map, this);
                         });
