@@ -81,7 +81,7 @@ function getRestaurants() {
                             position: thisShop.geometry.location,
                             pizza_shop: thisShop.name,
                             distanceToYou: truncDist,
-                            rating: thisShop.rating
+                            rating: thisShop.rating,
                             icon: shop_image
                         });
 
