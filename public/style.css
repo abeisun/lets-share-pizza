@@ -6,6 +6,10 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #FFE7AB;
+}
+head{
+	background-color: #FFE7AB;
 }
 
 .button {
@@ -20,9 +24,11 @@ html, body {
 	font-weight: 2px;
 	font-size: 20px;
 }
+
 .button:hover {
 	color: #388E8E;
 }
+
 .topnav {
   overflow: hidden;
   background-color: #ff9333;
@@ -47,8 +53,8 @@ html, body {
   color: white;
 }
 
-body,html{
-    margin:0;
-    width:100%;
-    background-color: black;
+.ajax-error-message {
+    color: #E90E0E;
 }
+
+

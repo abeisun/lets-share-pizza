@@ -65,11 +65,16 @@ function getRestaurants() {
                     /* Only place locations within one mile */
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
                     if (distance < 1600) {
-
+                        /* Create new image for the orders */
+                        var shop_image = {
+                            url: '/purple_pizza.png',
+                            scaledSize: new google.maps.Size(50, 50)
+                        };
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
                             position: results[i].geometry.location,
-                            pizza_shop: results[i].name
+                            pizza_shop: results[i].name,
+                            icon: shop_image
                         });
 
                         /* Place it on the map */
@@ -109,8 +114,16 @@ function startOrder()
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[3].value };
     var pizzaShopName = $("#no-pizza-shop-name").text();
     var url = "https://lets-share-pizza.herokuapp.com/startOrder";
-    $.post(url, {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] }, function () {  
-        window.location.replace("firstorder_success.html");
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {'numSlices': numSlices, 'pizzaShopName': pizzaShopName, 'toppings': toppings, 'contactInfo': [ contact ], 'coordinates': [curr_lat, curr_lng] },
+        success: function () {
+            window.location.replace("firstorder_success.html");
+        },
+        error: function(jqXHR, txtStatus, errorThrown) {
+            $("#no-error-message").text(errorThrown + ": " + jqXHR.responseJSON.message); 
+        }
     });
 }
 
@@ -197,7 +210,21 @@ function addToOrder()
     var numSlices = form.elements[1].value;
     var contact = { 'name': form.elements[0].value, 'phoneNumber': form.elements[2].value };
     var url = "https://lets-share-pizza.herokuapp.com/addToOrder";
-    $.post(url, { 'objID': orderobjid, 'numSlices': numSlices, 'contact': contact }, function () {  
-        window.location.replace("add_success.html");
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: { 'objID': orderobjid, 'numSlices': numSlices, 'contact': contact },
+        success: function () {  
+            window.location.replace("add_success.html");
+        },
+        error: function(jqXHR, txtStatus, errorThrown) {
+            console.log('jqXHR: ');
+            console.log(jqXHR);
+            console.log('txtStatus: ');
+            console.log(txtStatus);
+            console.log('errorThrown: ');
+            console.log(errorThrown);
+            $("#ao-error-message").text(errorThrown + ": " + jqXHR.responseJSON.message); 
+        }
     });
 }
