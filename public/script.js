@@ -204,7 +204,7 @@ function addToOrder()
             console.log(txtStatus);
             console.log('errorThrown: ');
             console.log(errorThrown);
-            $("#ao-error-message").text("Status: " + txtStatus); 
+            $("#ao-error-message").text(errorThrown + ": " + jqXHR.responseJSON.message); 
         }
     });
 }
