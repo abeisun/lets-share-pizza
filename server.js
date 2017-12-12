@@ -63,11 +63,9 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
-    console.log("max slice number: " + (8-req.body.numSlices));
-    console.log("type: " + typeof(8-req.body.numSlices));
     orderModel.findOneAndUpdate(
         { '_id': req.body.objID, 
-          'numSlices': { $lse: 8 - req.body.numSlices }
+          'numSlices': { $lte: 8 - req.body.numSlices }
         },
         { $inc: { 'numSlices': req.body.numSlices },
           $push: { 'contactInfo': req.body.contact } },
