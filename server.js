@@ -37,7 +37,7 @@ app.post('/startOrder', function(req, res) {
             message: "Too many slices of pizza"
         });
     }
-    var inputPhoneNum = req.body.contactInfo.phoneNumber;
+    var inputPhoneNum = req.body.contactInfo[0].phoneNumber;
     console.log("inputPhoneNum: " + inputPhoneNum);
     console.log(typeof(inputPhoneNum));
     if (!inputPhoneNum.match(phoneNumExp)) {
