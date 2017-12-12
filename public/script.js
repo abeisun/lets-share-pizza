@@ -52,6 +52,8 @@ function getRestaurants() {
     var results_cache;
     
     nearby.textSearch(restaurant_req, function(results, status) {
+        console.log("All the pizza shops near by: ");
+        console.log(results);
 
         /* Place on the map */
         if (status == google.maps.places.PlacesServiceStatus.OK) {            
@@ -61,19 +63,29 @@ function getRestaurants() {
                
                 var pizza_info = results[i].opening_hours;
                 if (pizza_info.open_now == true) {
-
+                    var pizza_hours = results[i].periods;
                     /* Only place locations within one mile */
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(pizza_loc, map_lat_lng);
-                    if (distance < 1600) {
+                    if (distance < 4800) {
                         /* Create new image for the orders */
                         var shop_image = {
                             url: '/purple_pizza.png',
                             scaledSize: new google.maps.Size(50, 50)
                         };
+
+                        var thisShop = results[i];
+                        var truncDist = (distance / 1600).toFixed(2);
+                        var now = new Date();
+                        var weekIndex = now.getDay() - 1;
+                        var todayHours = thisShop.opening_hours.weekday_text[weekIndex];
+
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
-                            position: results[i].geometry.location,
-                            pizza_shop: results[i].name,
+                            position: thisShop.geometry.location,
+                            pizza_shop: thisShop.name,
+                            distanceToYou: truncDist,
+                            rating: thisShop.rating,
+                            operation_hours: todayHours,
                             icon: shop_image
                         });
 
@@ -83,9 +95,11 @@ function getRestaurants() {
                         /* Add a listener to mouseover the infowindow */
                         pizza_mrk.addListener("mouseover", function() {
                             infowindow = new google.maps.InfoWindow({
-                                content: "<h2>" + this.pizza_shop + "<h2><BR>"
-                                       /* <p>Hours: </p>" + open_time + "<p> - </p>"
-                                        + close_time*/
+                                content: 
+                                "<h2>" + this.pizza_shop + "<h2>" +
+                                "<p>Distance to you: " + this.distanceToYou + " miles</p>"
+                                "<p>Rating: " + this.rating + "</p>"
+                                "<p>Operation Hours: " + this.todayHours + " miles</p>"
                             });
                             infowindow.open(map, this);
                         });
