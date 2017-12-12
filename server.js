@@ -92,6 +92,22 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
+    var nSlices = +(req.body.numSlices);    //convert to number
+    if (!(Number.isInteger(nSlices))) {
+        return res.status(400).json({
+            message: "Fraction number of slices not allowed"
+        });
+    }
+    if (nSlices >= 8) {
+        return res.status(400).json({
+            message: "Too many slices of pizza"
+        });
+    }
+    if (nSlices < 1) {
+        return res.status(400).json({
+            message: "Too few slices of pizza"
+        });
+    }
     var inputPhoneNum = req.body.contact.phoneNumber;
     if (!inputPhoneNum.match(phoneNumExp)) {
         return res.status(400).json({
