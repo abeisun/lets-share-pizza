@@ -81,6 +81,8 @@ function getRestaurants() {
                         var weekHours = thisShop.opening_hours.weekday_text;
                         console.log(weekHours);
 
+                        todayHours = null;
+
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
                             position: thisShop.geometry.location,
