@@ -33,8 +33,8 @@ const phoneNumExp = /^\d{10}$/;
 
 app.post('/startOrder', function(req, res) {
     var nSlices = +(req.body.numSlices);    //convert to number
-    console.log("numslices: " + numSlices);
-    console.log("typeof numslices: " + typeof(numSlices));
+    console.log("numslices: " + nSlices);
+    console.log("typeof numslices: " + typeof(nSlices));
     if (!(Number.isInteger(nSlices))) {
         return res.status(400).json({
             message: "Fraction number of slices not allowed"
