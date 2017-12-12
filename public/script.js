@@ -73,11 +73,13 @@ function getRestaurants() {
                             scaledSize: new google.maps.Size(50, 50)
                         };
 
+                        var truncDist = (distance / 1600).toFixed(2);
+
                         /* Create the new marker */
                         var pizza_mrk = new google.maps.Marker({
                             position: results[i].geometry.location,
                             pizza_shop: results[i].name,
-                            distanceToYou: (distance / 1600),
+                            distanceToYou: truncDist,
                             icon: shop_image
                         });
 
@@ -89,7 +91,7 @@ function getRestaurants() {
                             infowindow = new google.maps.InfoWindow({
                                 content: 
                                 "<h2>" + this.pizza_shop + "<h2>" +
-                                "<p>Distance to you: " + this.distanceToYou + "</p>"
+                                "<p>Distance to you: " + this.distanceToYou + " miles.</p>"
                             });
                             infowindow.open(map, this);
                         });
