@@ -198,6 +198,12 @@ function addToOrder()
             window.location.replace("add_success.html");
         },
         error: function(jqXHR, txtStatus, errorThrown) {
+            console.log('jqXHR: ');
+            console.log(jqXHR);
+            console.log('txtStatus: ');
+            console.log(txtStatus);
+            console.log('errorThrown: ');
+            console.log(errorThrown);
             $("#ao-error-message").text("Status: " + txtStatus); 
         }
     });
