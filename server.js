@@ -32,9 +32,18 @@ app.get('/', function(req, res) {
 const phoneNumExp = /^\d{10}$/;
 
 app.post('/startOrder', function(req, res) {
-    if (req.body.numSlices >= 8) {
+    var nSlices = +(req.body.numSlices);    //convert to number
+    console.log("numslices: " + numSlices);
+    console.log("typeof numslices: " + typeof(numSlices));
+    if (!(Number.isInteger(nSlices))) {
+    if (nSlices >= 8) {
         return res.status(400).json({
             message: "Too many slices of pizza"
+        });
+    }
+    if (nSlices < 1) {
+        return res.status(400).json({
+            message: "Too few slices of pizza"
         });
     }
     var inputPhoneNum = req.body.contactInfo[0].phoneNumber;
