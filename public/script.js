@@ -87,15 +87,9 @@ function getRestaurants() {
                         /* Add a listener to mouseover the infowindow */
                         pizza_mrk.addListener("mouseover", function() {
                             infowindow = new google.maps.InfoWindow({
-<<<<<<< HEAD
                                 content: 
                                 "<h2>" + this.pizza_shop + "<h2>" +
                                 "<p>Distance to you: " + this.distanceToYou + "</p>"
-=======
-                                content: "<h2>" + this.pizza_shop + "<h2><BR>"
-                                       /* <p>Hours: </p>" + open_time + "<p> - </p>"
-                                        + close_time*/
->>>>>>> 87d960a7a5b1ebc3124ad38c82133b6e5089b92c
                             });
                             infowindow.open(map, this);
                         });
