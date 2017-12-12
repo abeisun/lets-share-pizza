@@ -32,12 +32,25 @@ app.get('/', function(req, res) {
 const phoneNumExp = /^\d{10}$/;
 
 app.post('/startOrder', function(req, res) {
-    if (req.body.numSlices >= 8) {
+    var nSlices = +(req.body.numSlices);    //convert to number
+    console.log("numslices: " + nSlices);
+    console.log("typeof numslices: " + typeof(nSlices));
+    if (!(Number.isInteger(nSlices))) {
+        return res.status(400).json({
+            message: "Fraction number of slices not allowed"
+        });
+    }
+    if (nSlices >= 8) {
         return res.status(400).json({
             message: "Too many slices of pizza"
         });
     }
-    var inputPhoneNum = req.body.contactInfo.phoneNumber;
+    if (nSlices < 1) {
+        return res.status(400).json({
+            message: "Too few slices of pizza"
+        });
+    }
+    var inputPhoneNum = req.body.contactInfo[0].phoneNumber;
     console.log("inputPhoneNum: " + inputPhoneNum);
     console.log(typeof(inputPhoneNum));
     if (!inputPhoneNum.match(phoneNumExp)) {
@@ -79,6 +92,22 @@ app.get('/allOrders.json', function(req, res) {
 });
 
 app.post('/addToOrder', function(req, res) {
+    var nSlices = +(req.body.numSlices);    //convert to number
+    if (!(Number.isInteger(nSlices))) {
+        return res.status(400).json({
+            message: "Fraction number of slices not allowed"
+        });
+    }
+    if (nSlices >= 8) {
+        return res.status(400).json({
+            message: "Too many slices of pizza"
+        });
+    }
+    if (nSlices < 1) {
+        return res.status(400).json({
+            message: "Too few slices of pizza"
+        });
+    }
     var inputPhoneNum = req.body.contact.phoneNumber;
     if (!inputPhoneNum.match(phoneNumExp)) {
         return res.status(400).json({
